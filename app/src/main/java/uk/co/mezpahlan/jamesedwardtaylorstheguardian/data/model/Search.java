@@ -1,9 +1,8 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Search {
@@ -15,7 +14,7 @@ public class Search {
     /**
      *
      * @return
-     * The response
+     *     The response
      */
     public Response getResponse() {
         return response;
@@ -24,9 +23,10 @@ public class Search {
     /**
      *
      * @param response
-     * The response
+     *     The response
      */
     public void setResponse(Response response) {
         this.response = response;
     }
+
 }

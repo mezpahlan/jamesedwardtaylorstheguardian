@@ -1,9 +1,8 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Result {
@@ -28,7 +27,10 @@ public class Result {
     private String id;
     @SerializedName("isHosted")
     @Expose
-    private Boolean isHosted;
+    private boolean isHosted;
+    @SerializedName("fields")
+    @Expose
+    private Fields fields;
     @SerializedName("sectionId")
     @Expose
     private String sectionId;
@@ -39,7 +41,7 @@ public class Result {
     /**
      *
      * @return
-     * The webUrl
+     *     The webUrl
      */
     public String getWebUrl() {
         return webUrl;
@@ -48,7 +50,7 @@ public class Result {
     /**
      *
      * @param webUrl
-     * The webUrl
+     *     The webUrl
      */
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
@@ -57,7 +59,7 @@ public class Result {
     /**
      *
      * @return
-     * The webPublicationDate
+     *     The webPublicationDate
      */
     public String getWebPublicationDate() {
         return webPublicationDate;
@@ -66,7 +68,7 @@ public class Result {
     /**
      *
      * @param webPublicationDate
-     * The webPublicationDate
+     *     The webPublicationDate
      */
     public void setWebPublicationDate(String webPublicationDate) {
         this.webPublicationDate = webPublicationDate;
@@ -75,7 +77,7 @@ public class Result {
     /**
      *
      * @return
-     * The webTitle
+     *     The webTitle
      */
     public String getWebTitle() {
         return webTitle;
@@ -84,7 +86,7 @@ public class Result {
     /**
      *
      * @param webTitle
-     * The webTitle
+     *     The webTitle
      */
     public void setWebTitle(String webTitle) {
         this.webTitle = webTitle;
@@ -93,7 +95,7 @@ public class Result {
     /**
      *
      * @return
-     * The sectionName
+     *     The sectionName
      */
     public String getSectionName() {
         return sectionName;
@@ -102,7 +104,7 @@ public class Result {
     /**
      *
      * @param sectionName
-     * The sectionName
+     *     The sectionName
      */
     public void setSectionName(String sectionName) {
         this.sectionName = sectionName;
@@ -111,7 +113,7 @@ public class Result {
     /**
      *
      * @return
-     * The apiUrl
+     *     The apiUrl
      */
     public String getApiUrl() {
         return apiUrl;
@@ -120,7 +122,7 @@ public class Result {
     /**
      *
      * @param apiUrl
-     * The apiUrl
+     *     The apiUrl
      */
     public void setApiUrl(String apiUrl) {
         this.apiUrl = apiUrl;
@@ -129,7 +131,7 @@ public class Result {
     /**
      *
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
@@ -138,7 +140,7 @@ public class Result {
     /**
      *
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
@@ -147,25 +149,43 @@ public class Result {
     /**
      *
      * @return
-     * The isHosted
+     *     The isHosted
      */
-    public Boolean getIsHosted() {
+    public boolean isIsHosted() {
         return isHosted;
     }
 
     /**
      *
      * @param isHosted
-     * The isHosted
+     *     The isHosted
      */
-    public void setIsHosted(Boolean isHosted) {
+    public void setIsHosted(boolean isHosted) {
         this.isHosted = isHosted;
     }
 
     /**
      *
      * @return
-     * The sectionId
+     *     The fields
+     */
+    public Fields getFields() {
+        return fields;
+    }
+
+    /**
+     *
+     * @param fields
+     *     The fields
+     */
+    public void setFields(Fields fields) {
+        this.fields = fields;
+    }
+
+    /**
+     *
+     * @return
+     *     The sectionId
      */
     public String getSectionId() {
         return sectionId;
@@ -174,7 +194,7 @@ public class Result {
     /**
      *
      * @param sectionId
-     * The sectionId
+     *     The sectionId
      */
     public void setSectionId(String sectionId) {
         this.sectionId = sectionId;
@@ -183,7 +203,7 @@ public class Result {
     /**
      *
      * @return
-     * The type
+     *     The type
      */
     public String getType() {
         return type;
@@ -192,9 +212,10 @@ public class Result {
     /**
      *
      * @param type
-     * The type
+     *     The type
      */
     public void setType(String type) {
         this.type = type;
     }
+
 }

@@ -2,32 +2,31 @@ package uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Response {
 
     @SerializedName("currentPage")
     @Expose
-    private Integer currentPage;
+    private int currentPage;
     @SerializedName("pageSize")
     @Expose
-    private Integer pageSize;
+    private int pageSize;
     @SerializedName("pages")
     @Expose
-    private Integer pages;
+    private int pages;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private int total;
     @SerializedName("userTier")
     @Expose
     private String userTier;
     @SerializedName("startIndex")
     @Expose
-    private Integer startIndex;
+    private int startIndex;
     @SerializedName("results")
     @Expose
     private List<Result> results = new ArrayList<Result>();
@@ -41,79 +40,79 @@ public class Response {
     /**
      *
      * @return
-     * The currentPage
+     *     The currentPage
      */
-    public Integer getCurrentPage() {
+    public int getCurrentPage() {
         return currentPage;
     }
 
     /**
      *
      * @param currentPage
-     * The currentPage
+     *     The currentPage
      */
-    public void setCurrentPage(Integer currentPage) {
+    public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
 
     /**
      *
      * @return
-     * The pageSize
+     *     The pageSize
      */
-    public Integer getPageSize() {
+    public int getPageSize() {
         return pageSize;
     }
 
     /**
      *
      * @param pageSize
-     * The pageSize
+     *     The pageSize
      */
-    public void setPageSize(Integer pageSize) {
+    public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
 
     /**
      *
      * @return
-     * The pages
+     *     The pages
      */
-    public Integer getPages() {
+    public int getPages() {
         return pages;
     }
 
     /**
      *
      * @param pages
-     * The pages
+     *     The pages
      */
-    public void setPages(Integer pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
 
     /**
      *
      * @return
-     * The total
+     *     The total
      */
-    public Integer getTotal() {
+    public int getTotal() {
         return total;
     }
 
     /**
      *
      * @param total
-     * The total
+     *     The total
      */
-    public void setTotal(Integer total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
     /**
      *
      * @return
-     * The userTier
+     *     The userTier
      */
     public String getUserTier() {
         return userTier;
@@ -122,7 +121,7 @@ public class Response {
     /**
      *
      * @param userTier
-     * The userTier
+     *     The userTier
      */
     public void setUserTier(String userTier) {
         this.userTier = userTier;
@@ -131,25 +130,25 @@ public class Response {
     /**
      *
      * @return
-     * The startIndex
+     *     The startIndex
      */
-    public Integer getStartIndex() {
+    public int getStartIndex() {
         return startIndex;
     }
 
     /**
      *
      * @param startIndex
-     * The startIndex
+     *     The startIndex
      */
-    public void setStartIndex(Integer startIndex) {
+    public void setStartIndex(int startIndex) {
         this.startIndex = startIndex;
     }
 
     /**
      *
      * @return
-     * The results
+     *     The results
      */
     public List<Result> getResults() {
         return results;
@@ -158,7 +157,7 @@ public class Response {
     /**
      *
      * @param results
-     * The results
+     *     The results
      */
     public void setResults(List<Result> results) {
         this.results = results;
@@ -167,7 +166,7 @@ public class Response {
     /**
      *
      * @return
-     * The status
+     *     The status
      */
     public String getStatus() {
         return status;
@@ -176,7 +175,7 @@ public class Response {
     /**
      *
      * @param status
-     * The status
+     *     The status
      */
     public void setStatus(String status) {
         this.status = status;
@@ -185,7 +184,7 @@ public class Response {
     /**
      *
      * @return
-     * The orderBy
+     *     The orderBy
      */
     public String getOrderBy() {
         return orderBy;
@@ -194,9 +193,10 @@ public class Response {
     /**
      *
      * @param orderBy
-     * The orderBy
+     *     The orderBy
      */
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
+
 }
