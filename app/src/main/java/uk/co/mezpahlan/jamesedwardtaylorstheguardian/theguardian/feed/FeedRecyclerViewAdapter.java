@@ -46,12 +46,16 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         final ImageView thumbnailView = holder.getThumbnailView();
         final TextView headlineView = holder.getHeadlineView();
         final TextView trailTextView = holder.getTrailTextView();
+        final TextView publishedOnView = holder.getPublishedOnView();
+        final TextView sectionView = holder.getSectionView();
 
         final Result item = itemList.get(position);
         final Fields fields = item.getFields();
         final String thumbnailUrl = fields.getThumbnail();
         final String headline = fields.getHeadline();
         final String trailText = fields.getTrailText();
+        final String publishedOnText = item.getWebPublicationDate();
+        final String sectionText = item.getSectionName();
 
         Picasso.with(thumbnailView.getContext())
                 .load(thumbnailUrl)
@@ -63,6 +67,8 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
         headlineView.setText(headline);
         trailTextView.setText(trailText);
+        publishedOnView.setText(publishedOnText);
+        sectionView.setText(sectionText);
     }
 
     @Override
