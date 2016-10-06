@@ -18,7 +18,7 @@ public interface FeedMvp {
 
     interface Presenter extends BaseMvp.Presenter <List<Result>> {
         void onConfigurationChanged(View view);
-        void onSelectRssItem(@NonNull Result result);
+        void onSelectResult(@NonNull Result result);
     }
 
     interface ModelInteractor extends BaseMvp.ModelInteractor <Response> {
