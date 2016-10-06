@@ -68,6 +68,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
         headlineView.setText(headline);
         trailTextView.setText(trailText);
+        if (trailText.length() < 1) { trailTextView.setVisibility(View.GONE); }
         publishedOnView.setText(publishedOnText);
         sectionView.setText(sectionText);
     }
