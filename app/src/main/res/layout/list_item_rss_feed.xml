@@ -98,7 +98,7 @@
             android:text="@string/section_label" />
 
         <TextView
-            android:id="@+id/section_on_view"
+            android:id="@+id/section_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
