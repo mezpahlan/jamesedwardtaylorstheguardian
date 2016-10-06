@@ -54,7 +54,8 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         final String thumbnailUrl = fields.getThumbnail();
         final String headline = fields.getHeadline();
         final String trailText = fields.getTrailText();
-        final String publishedOnText = item.getWebPublicationDate();
+        final String webPublicationDate = item.getWebPublicationDate();
+        final String publishedOnText = convertDateFormat(webPublicationDate);
         final String sectionText = item.getSectionName();
 
         Picasso.with(thumbnailView.getContext())
@@ -69,6 +70,14 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         trailTextView.setText(trailText);
         publishedOnView.setText(publishedOnText);
         sectionView.setText(sectionText);
+    }
+
+    private String convertDateFormat(String webPublicationDate) {
+        final String year = webPublicationDate.substring(0, 4);
+        final String month = webPublicationDate.substring(5,7);
+        final String date = webPublicationDate.substring(8,10);
+
+        return date+"-"+month+"-"+year;
     }
 
     @Override
