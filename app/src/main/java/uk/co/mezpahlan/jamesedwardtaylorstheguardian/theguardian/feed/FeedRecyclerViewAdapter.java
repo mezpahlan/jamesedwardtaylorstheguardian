@@ -22,6 +22,11 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
 public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerViewAdapter.FeedViewHolder> {
 
     private List<Result> itemList = new ArrayList<>(0);
+    private FeedFragment.ResultClickListener clickListener;
+
+    public void setClickListener(FeedFragment.ResultClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public void updateItems(List<Result> itemList) {
         // Remove any items from list1 that aren't in list 2
@@ -33,14 +38,11 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
     @Override
     public FeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_rss_feed, null);
-        return new FeedViewHolder(layoutView);
+        return new FeedViewHolder(layoutView, clickListener);
     }
 
     @Override
     public void onBindViewHolder(FeedViewHolder holder, int position) {
-        // TODO: Blink is not caused by Picasso reloading.
-        // TODO: Look at clicking on headlineView vs clicking on trailTextView to collapse.
-        // TODO: One causes blink the other doesn't....
         final ImageView thumbnailView = holder.getThumbnailView();
         final TextView headlineView = holder.getHeadlineView();
         final TextView trailTextView = holder.getTrailTextView();
@@ -72,25 +74,30 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         }
     }
 
-    public Result getResultWithPosition(int position) {
-        return itemList.get(position);
-    }
-
-    public class FeedViewHolder extends RecyclerView.ViewHolder {
+    public class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView thumbnailView;
         private TextView headlineView;
         private TextView trailTextView;
+        private FeedFragment.ResultClickListener clickListener;
 
-        public FeedViewHolder(View itemView) {
+        public FeedViewHolder(View itemView, FeedFragment.ResultClickListener clickListener) {
             super(itemView);
+            this.clickListener = clickListener;
 
             thumbnailView = (ImageView) itemView.findViewById(R.id.thumbnail_view);
             headlineView = (TextView) itemView.findViewById(R.id.headline_view);
             trailTextView = (TextView) itemView.findViewById(R.id.trail_text_view);
+
+            thumbnailView.setOnClickListener(this);
         }
 
         public ImageView getThumbnailView() { return thumbnailView; }
         public TextView getHeadlineView() { return headlineView; }
         public TextView getTrailTextView() { return trailTextView; }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onResultClick(getPosition());
+        }
     }
 }
