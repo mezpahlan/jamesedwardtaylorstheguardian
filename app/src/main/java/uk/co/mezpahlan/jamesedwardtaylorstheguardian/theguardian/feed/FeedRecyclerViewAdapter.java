@@ -104,7 +104,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
         @Override
         public void onClick(View v) {
-            clickListener.onResultClick(getPosition());
+            clickListener.onResultClick(getAdapterPosition());
         }
     }
 }
