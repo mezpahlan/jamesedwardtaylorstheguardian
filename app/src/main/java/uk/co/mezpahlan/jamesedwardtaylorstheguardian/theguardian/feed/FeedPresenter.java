@@ -11,29 +11,29 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
  * Presenter for TheGuardian.Feed.
  */
 public class FeedPresenter implements FeedMvp.Presenter {
-    private WeakReference<FeedMvp.View> itemView;
+    private WeakReference<FeedMvp.View> feedView;
     private final FeedMvp.ModelInteractor modelInteractor;
 
     public FeedPresenter(@NonNull FeedMvp.View feedView) {
-        this.itemView = new WeakReference<>(feedView);
+        this.feedView = new WeakReference<>(feedView);
         modelInteractor = new FeedModelInteractor(this);
     }
 
     @Override
     public void load(boolean isUserDrive) {
-        itemView.get().showLoading(isUserDrive);
+        feedView.get().showLoading(isUserDrive);
         modelInteractor.fetch();
     }
 
     @Override
     public void onLoadSuccess(@NonNull List<Result> resultList) {
-        itemView.get().updateContent(resultList);
-        itemView.get().showContent();
+        feedView.get().updateContent(resultList);
+        feedView.get().showContent();
     }
 
     @Override
     public void onLoadError() {
-        itemView.get().showError();
+        feedView.get().showError();
     }
 
     @Override
@@ -43,12 +43,13 @@ public class FeedPresenter implements FeedMvp.Presenter {
 
     @Override
     public void onConfigurationChanged(FeedMvp.View view) {
-        itemView = new WeakReference<>(view);
-        itemView.get().showLoading(false);
+        feedView = new WeakReference<>(view);
+        feedView.get().showLoading(false);
+
     }
 
     @Override
     public void onSelectResult(int position) {
-        itemView.get().showGuardianArticle(position);
+        feedView.get().showGuardianArticle(position);
     }
 }
