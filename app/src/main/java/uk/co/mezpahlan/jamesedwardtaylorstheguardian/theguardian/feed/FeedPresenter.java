@@ -45,7 +45,7 @@ public class FeedPresenter implements FeedMvp.Presenter {
     public void onConfigurationChanged(FeedMvp.View view) {
         feedView = new WeakReference<>(view);
         feedView.get().showLoading(false);
-
+        modelInteractor.fetchCached();
     }
 
     @Override
