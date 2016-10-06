@@ -1,6 +1,6 @@
 # James Edward Taylor's Guardian
 
-An Android reader for [The Guardian](https://www.theguardian.com) written using their [Open Platform](http://open-platform.theguardian.com/).
+An Android reader for [The Guardian](https://www.theguardian.com) written using their [Open Platform](http://open-platform.theguardian.com/) API.
 
 ## Why the name?
 
