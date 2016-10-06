@@ -16,6 +16,9 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.Constants;
  */
 public class GuardianOpenPlatformServiceGenerator {
     private static final String API_BASE_URL = "http://content.guardianapis.com";
+    private static final String QUERY_PARAM_KEY_API_KEY = "api-key";
+    private static final String QUERY_PARAM_KEY_SHOW_FIELDS = "show-fields";
+    private static final String QUERY_PARAM_VALUE_SHOW_FIELDS = "thumbnail,headline,trailText";
 
     private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -33,7 +36,8 @@ public class GuardianOpenPlatformServiceGenerator {
                 HttpUrl originalHttpUrl = original.url();
 
                 HttpUrl url = originalHttpUrl.newBuilder()
-                        .addQueryParameter("api-key", Constants.GUARDIAN_KEY)
+                        .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS )
+                        .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
                         .build();
 
                 // Request customization: add request headers
@@ -45,7 +49,7 @@ public class GuardianOpenPlatformServiceGenerator {
             }
         });
 
-        Retrofit retrofit = builder.client(httpClient.build()).build();
+        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpClient.build()).build();
         return retrofit.create(serviceClass);
     }
 }
