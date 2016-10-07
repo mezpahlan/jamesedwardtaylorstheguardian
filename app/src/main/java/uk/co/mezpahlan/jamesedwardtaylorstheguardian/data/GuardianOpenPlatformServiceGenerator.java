@@ -21,7 +21,8 @@ public class GuardianOpenPlatformServiceGenerator {
     private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH = "thumbnail,headline,trailText";
     private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM = "body";
 
-    private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    private static final OkHttpClient.Builder httpSearchClient = new OkHttpClient.Builder();
+    private static final OkHttpClient.Builder httpSingleItemClient = new OkHttpClient.Builder();
 
     private static final Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
@@ -29,7 +30,7 @@ public class GuardianOpenPlatformServiceGenerator {
 
     public static <S> S createSearchService(Class<S> serviceClass) {
         // Always add the API key to requests
-        httpClient.addInterceptor(new Interceptor() {
+        httpSearchClient.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request original = chain.request();
@@ -49,13 +50,13 @@ public class GuardianOpenPlatformServiceGenerator {
             }
         });
 
-        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpClient.build()).build();
+        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpSearchClient.build()).build();
         return retrofit.create(serviceClass);
     }
 
     public static <S> S createSingleItemService(Class<S> serviceClass) {
         // Always add the API key to requests
-        httpClient.addInterceptor(new Interceptor() {
+        httpSingleItemClient.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request original = chain.request();
@@ -75,7 +76,7 @@ public class GuardianOpenPlatformServiceGenerator {
             }
         });
 
-        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpClient.build()).build();
+        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpSingleItemClient.build()).build();
         return retrofit.create(serviceClass);
     }
 }
