@@ -15,7 +15,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.Constants;
  * Retrofit Service Generator for The Guardian Open Platform.
  */
 public class GuardianOpenPlatformServiceGenerator {
-    private static final String API_BASE_URL = "http://content.guardianapis.com";
+    private static final String API_BASE_URL = "http://content.guardianapis.com/";
     private static final String QUERY_PARAM_KEY_API_KEY = "api-key";
     private static final String QUERY_PARAM_KEY_SHOW_FIELDS = "show-fields";
     private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH = "thumbnail,headline,trailText";
