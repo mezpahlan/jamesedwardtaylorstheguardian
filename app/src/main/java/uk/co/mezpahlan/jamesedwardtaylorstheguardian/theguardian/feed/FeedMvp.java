@@ -7,7 +7,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Search;
 
 /**
- * MVP definitions for RSS Feed.
+ * MVP definitions for TheGuardian.Feed
  */
 public interface FeedMvp {
     interface View extends BaseMvp.LCEView <List<Result>> {
