@@ -1,6 +1,7 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,13 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.StateMaintainer;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article.ArticleActivity;
 
 /**
  *  Fragment for TheGuardian.Feed. Part of the View Layer.
@@ -143,24 +144,20 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
      */
     ResultClickListener resultClickListener = new ResultClickListener() {
         @Override
-        public void onResultClick(int result) {
+        public void onResultClick(Result result) {
             presenter.onSelectResult(result);
         }
     };
 
     @Override
-    public void showGuardianArticle(int position) {
-        // TODO: Complete this after you've set up the Article component. For now just show a Toast.
-        Toast.makeText(getActivity(), "Moving to new activity to show an article", Toast.LENGTH_SHORT).show();
-
-//        // Naive implementation using an intent to move between activities
-//        Intent intent = new Intent(getActivity(), ArticleActivity.class);
-//        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_TITLE, guardianArticleTitle);
-//        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_URL, guardianArticleUrl);
-//        startActivity(intent);
+    public void showGuardianArticle(String articleId) {
+        // Naive implementation using an intent to move between activities
+        Intent intent = new Intent(getActivity(), ArticleActivity.class);
+        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_ID, articleId);
+        startActivity(intent);
     }
 
     public interface ResultClickListener {
-        void onResultClick(int result);
+        void onResultClick(Result result);
     }
 }

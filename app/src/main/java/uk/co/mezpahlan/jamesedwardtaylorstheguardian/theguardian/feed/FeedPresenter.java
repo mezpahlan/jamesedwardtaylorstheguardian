@@ -49,7 +49,7 @@ public class FeedPresenter implements FeedMvp.Presenter {
     }
 
     @Override
-    public void onSelectResult(int position) {
-        feedView.get().showGuardianArticle(position);
+    public void onSelectResult(Result result) {
+        feedView.get().showGuardianArticle(result.getId());
     }
 }

@@ -93,6 +93,10 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         }
     }
 
+    public Result getResultWithPosition(int position) {
+        return itemList.get(position);
+    }
+
     public class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView thumbnailView;
         private TextView headlineView;
@@ -123,7 +127,9 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
         @Override
         public void onClick(View v) {
-            clickListener.onResultClick(getAdapterPosition());
+            final int layoutPosition = getLayoutPosition();
+            Result result = getResultWithPosition(layoutPosition);
+            clickListener.onResultClick(result);
         }
     }
 }
