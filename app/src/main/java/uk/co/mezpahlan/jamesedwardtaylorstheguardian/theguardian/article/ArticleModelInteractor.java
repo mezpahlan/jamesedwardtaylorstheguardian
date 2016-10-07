@@ -23,7 +23,6 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
     public ArticleModelInteractor(ArticleMvp.Presenter articlePresenter) {
         this.articlePresenter = articlePresenter;
         client = GuardianOpenPlatformServiceGenerator.createSingleItemService(GuardianOpenPlatformClient.class);
-
     }
 
     @Override

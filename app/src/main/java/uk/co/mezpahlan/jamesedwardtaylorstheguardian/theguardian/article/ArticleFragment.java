@@ -55,6 +55,12 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
         super.onViewCreated(view, savedInstanceState);
         loadingView = view.findViewById(R.id.loading_view);
         webView = (WebView) view.findViewById(R.id.web_view);
+
+        // Configure the webView with sensible defaults
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.setWebViewClient(new ArticleWebViewClient());
     }
 
     @Override
