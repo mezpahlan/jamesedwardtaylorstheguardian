@@ -51,57 +51,64 @@
             android:layout_below="@id/headline_view"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae." />
 
-
-        <TextView
-            android:id="@+id/published_on_label_view"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/trail_text_view"
-            android:text="@string/published_on_label" />
-
-        <TextView
-            android:id="@+id/published_on_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/published_on_label_view"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            tools:text="31-12-1999" />
-
-        <TextView
-            android:id="@+id/section_label_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:text="@string/section_label"
-            android:layout_below="@+id/trail_text_view"
-            android:layout_alignRight="@+id/trail_text_view"
-            android:layout_alignEnd="@+id/trail_text_view"/>
-
-        <TextView
-            android:id="@+id/section_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:orientation="horizontal"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/section_label_view"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            tools:text="Politics" />
+            android:layout_below="@id/trail_text_view" >
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/published_on_label_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:text="@string/published_on_label"/>
+
+                <TextView
+                    android:id="@+id/published_on_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    tools:text="31-12-1999"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/section_label_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:text="@string/section_label" />
+
+                <TextView
+                    android:id="@+id/section_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    tools:text="Politics" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
