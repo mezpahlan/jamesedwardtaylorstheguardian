@@ -68,7 +68,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadingView = view.findViewById(R.id.loadingView);
+        loadingView = view.findViewById(R.id.loading_view);
         contentView = view.findViewById(R.id.content_view);
     }
 
