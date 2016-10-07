@@ -125,6 +125,19 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
 
     @Override
     public void updateContent(String articleHtml) {
-        webView.loadDataWithBaseURL("https://www.theguardian.com/", articleHtml, "text/html", "UTF-8", null);
+        // TODO: Momve this creation to Presenter
+        String newHtml = "<!DOCTYPE html> \n" +
+                "<html>\n" +
+                "<head>\n" +
+                "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                "  <title>Made with Thimble</title>\n" +
+                "  <link rel=\"stylesheet\" href=\"style.css\">\n" +
+                "</head>\n" +
+                "<body>" +
+                    articleHtml +
+                "</body>\n" +
+                "</html>";
+        webView.loadDataWithBaseURL("file:///android_asset/", newHtml, "text/html", "UTF-8", null);
     }
 }
