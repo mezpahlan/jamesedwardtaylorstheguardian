@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Fields;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Fields;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
 
 /**
  * RecyclerViewAdapter for TheGuardian.Feed.

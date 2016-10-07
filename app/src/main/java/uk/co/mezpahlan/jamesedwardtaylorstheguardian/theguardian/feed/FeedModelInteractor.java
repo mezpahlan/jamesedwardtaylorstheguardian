@@ -7,7 +7,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.GuardianOpenPlatformClient;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.GuardianOpenPlatformServiceGenerator;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Search;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Search;
 
 /**
  * ModelInteractor for TheGuardian.Feed. Part of the Model layer.
@@ -22,7 +22,7 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
 
     public FeedModelInteractor(FeedMvp.Presenter itemPresenter) {
         this.feedPresenter = itemPresenter;
-        client = GuardianOpenPlatformServiceGenerator.createService(GuardianOpenPlatformClient.class);
+        client = GuardianOpenPlatformServiceGenerator.createSearchService(GuardianOpenPlatformClient.class);
     }
 
     @Override

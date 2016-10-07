@@ -15,7 +15,7 @@ import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.StateMaintainer;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
 
 /**
  *  Fragment for TheGuardian.Feed. Part of the View Layer.

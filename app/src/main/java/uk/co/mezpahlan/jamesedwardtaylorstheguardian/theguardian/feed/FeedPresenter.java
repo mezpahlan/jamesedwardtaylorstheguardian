@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
 
 /**
  * Presenter for TheGuardian.Feed.

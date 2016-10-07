@@ -3,8 +3,8 @@ package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.BaseMvp;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Result;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Search;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Search;
 
 /**
  * MVP definitions for TheGuardian.Feed

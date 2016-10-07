@@ -18,7 +18,8 @@ public class GuardianOpenPlatformServiceGenerator {
     private static final String API_BASE_URL = "http://content.guardianapis.com";
     private static final String QUERY_PARAM_KEY_API_KEY = "api-key";
     private static final String QUERY_PARAM_KEY_SHOW_FIELDS = "show-fields";
-    private static final String QUERY_PARAM_VALUE_SHOW_FIELDS = "thumbnail,headline,trailText";
+    private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH = "thumbnail,headline,trailText";
+    private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM = "body";
 
     private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -26,8 +27,7 @@ public class GuardianOpenPlatformServiceGenerator {
             .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
 
-    public static <S> S createService(Class<S> serviceClass) {
-
+    public static <S> S createSearchService(Class<S> serviceClass) {
         // Always add the API key to requests
         httpClient.addInterceptor(new Interceptor() {
             @Override
@@ -36,7 +36,33 @@ public class GuardianOpenPlatformServiceGenerator {
                 HttpUrl originalHttpUrl = original.url();
 
                 HttpUrl url = originalHttpUrl.newBuilder()
-                        .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS )
+                        .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH)
+                        .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
+                        .build();
+
+                // Request customization: add request headers
+                Request.Builder requestBuilder = original.newBuilder()
+                        .url(url);
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
+
+        Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpClient.build()).build();
+        return retrofit.create(serviceClass);
+    }
+
+    public static <S> S createSingleItemService(Class<S> serviceClass) {
+        // Always add the API key to requests
+        httpClient.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                HttpUrl originalHttpUrl = original.url();
+
+                HttpUrl url = originalHttpUrl.newBuilder()
+                        .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM)
                         .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
                         .build();
 

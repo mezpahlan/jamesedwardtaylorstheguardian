@@ -2,7 +2,9 @@ package uk.co.mezpahlan.jamesedwardtaylorstheguardian.data;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Search;
+import retrofit2.http.Url;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Search;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.singleitem.SingleItem;
 
 /**
  * Retrofit client for The Guardian Open Platform Client
@@ -10,4 +12,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.Search;
 public interface GuardianOpenPlatformClient {
     @GET("search")
     Call<Search> search();
+
+    @GET
+    Call<SingleItem> singleItem(@Url String id);
 }
