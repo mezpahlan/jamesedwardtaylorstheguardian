@@ -21,18 +21,18 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
  */
 public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerViewAdapter.FeedViewHolder> {
 
-    private List<Result> itemList = new ArrayList<>(0);
+    private List<Result> resultList = new ArrayList<>(0);
     private FeedFragment.ResultClickListener clickListener;
 
     public void setClickListener(FeedFragment.ResultClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
-    public void updateItems(List<Result> itemList) {
+    public void updateResults(List<Result> resultList) {
         // Remove any items from list1 that aren't in list 2
-        this.itemList.removeAll(itemList);
+        this.resultList.removeAll(resultList);
         // Add list 2 to the remaining items from list 1
-        this.itemList.addAll(itemList);
+        this.resultList.addAll(resultList);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         final TextView publishedOnView = holder.getPublishedOnView();
         final TextView sectionView = holder.getSectionView();
 
-        final Result item = itemList.get(position);
+        final Result item = resultList.get(position);
         final Fields fields = item.getFields();
         final String thumbnailUrl = fields.getThumbnail();
         final String headline = stripHTML(fields.getHeadline());
@@ -86,15 +86,15 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
     @Override
     public int getItemCount() {
-        if (itemList != null) {
-            return itemList.size();
+        if (resultList != null) {
+            return resultList.size();
         } else {
             return 0;
         }
     }
 
     public Result getResultWithPosition(int position) {
-        return itemList.get(position);
+        return resultList.get(position);
     }
 
     public class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -135,7 +135,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
 
     @Override
     public void updateContent(List<Result> resultList) {
-        listAdapter.updateItems(resultList);
+        listAdapter.updateResults(resultList);
         listAdapter.notifyDataSetChanged();
     }
 
