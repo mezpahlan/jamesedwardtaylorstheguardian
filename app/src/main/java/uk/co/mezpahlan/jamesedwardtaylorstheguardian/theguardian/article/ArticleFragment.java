@@ -17,6 +17,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed.FeedMvp;
 public class ArticleFragment extends Fragment implements ArticleMvp.View{
 
     public static final String ARGUMENT_ARTICLE_ID = "ARTICLE_ID";
+    public static final String ARGUMENT_ARTICLE_TITLE = "ARTICLE_TITLE";
     private static final String TAG = "ArticleFragment";
 
     private StateMaintainer stateMaintainer;
@@ -26,9 +27,10 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     private WebView webView;
     private String articleId;
 
-    public static ArticleFragment newInstance(String articleId) {
+    public static ArticleFragment newInstance(String articleId, String articleTitle) {
         Bundle arguments = new Bundle();
         arguments.putString(ARGUMENT_ARTICLE_ID, articleId);
+        arguments.putString(ARGUMENT_ARTICLE_TITLE, articleTitle);
 
         ArticleFragment fragment = new ArticleFragment();
         fragment.setArguments(arguments);
@@ -40,6 +42,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         articleId = getArguments().getString(ARGUMENT_ARTICLE_ID);
+        setTitle(getArguments().getString(ARGUMENT_ARTICLE_TITLE));
     }
 
     @Override
@@ -68,6 +71,11 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
         super.onStart();
         setupStateMaintainer();
         checkForRetainedState();
+    }
+
+    @Override
+    public void setTitle(String title) {
+        getActivity().setTitle(title);
     }
 
     private void setupStateMaintainer() {

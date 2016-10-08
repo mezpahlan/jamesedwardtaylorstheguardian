@@ -150,10 +150,11 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     };
 
     @Override
-    public void showGuardianArticle(String articleId) {
+    public void showGuardianArticle(String articleId, String articleTitle) {
         // Naive implementation using an intent to move between activities
         Intent intent = new Intent(getActivity(), ArticleActivity.class);
         intent.putExtra(ArticleActivity.EXTRA_ARTICLE_ID, articleId);
+        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_TITLE, articleTitle);
         startActivity(intent);
     }
 

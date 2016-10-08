@@ -11,7 +11,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Search;
  */
 public interface FeedMvp {
     interface View extends BaseMvp.LCEView <List<Result>> {
-        void showGuardianArticle(String id);
+        void showGuardianArticle(String id, String title);
     }
 
     interface Presenter extends BaseMvp.Presenter <List<Result>> {

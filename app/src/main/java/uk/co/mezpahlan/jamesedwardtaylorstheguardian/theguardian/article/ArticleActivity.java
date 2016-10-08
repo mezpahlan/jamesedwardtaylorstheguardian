@@ -16,6 +16,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String EXTRA_ARTICLE_ID = "ARTICLE_URL";
+    public static final String EXTRA_ARTICLE_TITLE = "ARTICLE_TITLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,13 @@ public class ArticleActivity extends AppCompatActivity {
         // Get the requested RSS Item Title and Link
         final Intent intent = getIntent();
         String articleId = intent.getStringExtra(EXTRA_ARTICLE_ID);
+        String articleTitle = intent.getStringExtra(EXTRA_ARTICLE_TITLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         if (null == savedInstanceState) {
-            initFragment(ArticleFragment.newInstance(articleId));
+            initFragment(ArticleFragment.newInstance(articleId, articleTitle));
         }
 
     }

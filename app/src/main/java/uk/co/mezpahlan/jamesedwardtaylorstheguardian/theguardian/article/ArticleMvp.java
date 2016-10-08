@@ -8,6 +8,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.singleitem.Singl
  */
 public interface ArticleMvp {
     interface View extends BaseMvp.LCEView <String> {
+        void setTitle(String title);
     }
 
     interface Presenter {
