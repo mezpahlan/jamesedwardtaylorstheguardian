@@ -14,7 +14,7 @@ public class TheGuardianApplication extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("Merriweather-Regular.ttf")
+                .setDefaultFontPath("fonts/Merriweather-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
