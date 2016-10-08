@@ -18,8 +18,10 @@ public class GuardianOpenPlatformServiceGenerator {
     private static final String API_BASE_URL = "http://content.guardianapis.com/";
     private static final String QUERY_PARAM_KEY_API_KEY = "api-key";
     private static final String QUERY_PARAM_KEY_SHOW_FIELDS = "show-fields";
+    private static final String QUERY_PARAM_KEY_PAGE_SIZE = "page-size";
     private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH = "thumbnail,headline,trailText";
     private static final String QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM = "body";
+    private static final String QUERY_PARAM_VALUE_PAGE_SIZE = "50";
 
     private static final OkHttpClient.Builder httpSearchClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
         @Override
@@ -29,6 +31,7 @@ public class GuardianOpenPlatformServiceGenerator {
 
             HttpUrl url = originalHttpUrl.newBuilder()
                     .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH)
+                    .addQueryParameter(QUERY_PARAM_KEY_PAGE_SIZE, QUERY_PARAM_VALUE_PAGE_SIZE)
                     .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
                     .build();
 
