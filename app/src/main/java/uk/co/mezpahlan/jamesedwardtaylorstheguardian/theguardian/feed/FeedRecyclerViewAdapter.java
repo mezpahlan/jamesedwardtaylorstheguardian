@@ -116,7 +116,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
             publishedOnView = (TextView) itemView.findViewById(R.id.published_on_view);
             sectionView = (TextView) itemView.findViewById(R.id.section_view);
 
-            thumbnailView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         public ImageView getThumbnailView() { return thumbnailView; }
