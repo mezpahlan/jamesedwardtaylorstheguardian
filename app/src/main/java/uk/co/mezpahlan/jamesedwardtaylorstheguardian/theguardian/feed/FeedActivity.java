@@ -3,10 +3,12 @@ package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
 
 /**
@@ -34,5 +36,10 @@ public class FeedActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.feed_frame_view, feedFragment);
         transaction.commit();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
