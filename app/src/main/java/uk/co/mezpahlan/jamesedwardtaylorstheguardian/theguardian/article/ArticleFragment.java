@@ -131,7 +131,6 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
                 "<head>\n" +
                 "  <meta charset=\"utf-8\">\n" +
                 "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-                "  <title>Made with Thimble</title>\n" +
                 "  <link rel=\"stylesheet\" href=\"style.css\">\n" +
                 "</head>\n" +
                 "<body>" +
