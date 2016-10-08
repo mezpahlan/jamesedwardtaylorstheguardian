@@ -17,3 +17,11 @@ body > p:first-child::first-letter {
     padding-right: 8px;
     padding-left: 3px;
 }
+
+img {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 150px
+}
