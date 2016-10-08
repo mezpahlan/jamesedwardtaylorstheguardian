@@ -1,6 +1,8 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +19,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.StateMaintainer;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article.ArticleActivity;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article.ArticleFragment;
 
 /**
  *  Fragment for TheGuardian.Feed. Part of the View Layer.
@@ -24,6 +27,7 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article.Article
 public class FeedFragment extends Fragment implements FeedMvp.View {
 
     private static final String TAG = "FeedFragment";
+    public static final String ARGUMENT_FEED_IS_TWO_PANE = "FEED_IS_TWO_PANE";
 
     private StateMaintainer stateMaintainer;
     private FeedRecyclerViewAdapter listAdapter;
@@ -31,9 +35,23 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
 
     private View loadingView;
     private View contentView;
+    private boolean isTwoPane;
 
-    public static FeedFragment newInstance() {
-        return new FeedFragment();
+    public static FeedFragment newInstance(boolean isTwoPane) {
+        Bundle arguments = new Bundle();
+        arguments.putBoolean(ARGUMENT_FEED_IS_TWO_PANE, isTwoPane);
+
+        FeedFragment fragment = new FeedFragment();
+        fragment.setArguments(arguments);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        isTwoPane = getArguments().getBoolean(ARGUMENT_FEED_IS_TWO_PANE, false);
     }
 
     @Override
@@ -151,11 +169,19 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
 
     @Override
     public void showGuardianArticle(String articleId, String articleTitle) {
-        // Naive implementation using an intent to move between activities
-        Intent intent = new Intent(getActivity(), ArticleActivity.class);
-        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_ID, articleId);
-        intent.putExtra(ArticleActivity.EXTRA_ARTICLE_TITLE, articleTitle);
-        startActivity(intent);
+        if (isTwoPane) {
+            ArticleFragment articleFragment = ArticleFragment.newInstance(articleId, articleTitle);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.article_frame_view, articleFragment);
+            transaction.commit();
+        } else {
+            // Naive implementation using an intent to move between activities
+            Intent intent = new Intent(getActivity(), ArticleActivity.class);
+            intent.putExtra(ArticleActivity.EXTRA_ARTICLE_ID, articleId);
+            intent.putExtra(ArticleActivity.EXTRA_ARTICLE_TITLE, articleTitle);
+            startActivity(intent);
+        }
     }
 
     public interface ResultClickListener {
