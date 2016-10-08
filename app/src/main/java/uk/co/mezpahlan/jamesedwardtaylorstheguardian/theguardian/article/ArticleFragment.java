@@ -25,6 +25,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
 
     private View loadingView;
     private WebView webView;
+    private View errorView;
     private String articleId;
 
     public static ArticleFragment newInstance(String articleId, String articleTitle) {
@@ -58,6 +59,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
         super.onViewCreated(view, savedInstanceState);
         loadingView = view.findViewById(R.id.loading_view);
         webView = (WebView) view.findViewById(R.id.web_view);
+        errorView = view.findViewById(R.id.error_view);
 
         // Configure the webView with sensible defaults
         webView.getSettings().setLoadsImagesAutomatically(true);
@@ -118,17 +120,21 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     public void showLoading(boolean active) {
         loadingView.setVisibility(View.VISIBLE);
         webView.setVisibility(View.INVISIBLE);
+        errorView.setVisibility(View.GONE);
     }
 
     @Override
     public void showContent() {
         webView.setVisibility(View.VISIBLE);
         loadingView.setVisibility(View.GONE);
+        errorView.setVisibility(View.GONE);
     }
 
     @Override
     public void showError() {
-
+        errorView.setVisibility(View.VISIBLE);
+        webView.setVisibility(View.GONE);
+        loadingView.setVisibility(View.GONE);
     }
 
     @Override

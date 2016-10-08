@@ -1,7 +1,5 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article;
 
-import android.util.Log;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,7 +12,6 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.singleitem.Singl
  */
 public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
-    private static final String TAG = "ArticleModelInteractor";
     private final GuardianOpenPlatformClient client;
 
     private ArticleMvp.Presenter articlePresenter;
@@ -67,8 +64,7 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
     @Override
     public void onError() {
-        // TODO: Implement me
-        Log.e(TAG, "Something went wrong in the FeedModelInteractor");
+        articlePresenter.onLoadError();
     }
 
     @Override
