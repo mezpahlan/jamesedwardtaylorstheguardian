@@ -49,7 +49,10 @@ public class ArticlePresenter implements ArticleMvp.Presenter {
 
     @Override
     public void onDestroy(boolean isConfigChanging) {
-
+        articleView = null;
+        if (!isConfigChanging) {
+            modelInteractor.onDestroy();
+        }
     }
 
     @Override

@@ -69,6 +69,6 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
     @Override
     public void onDestroy() {
-
+        cachedSingleItem = null;
     }
 }

@@ -141,4 +141,11 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     public void updateContent(String webPageHtml) {
         webView.loadDataWithBaseURL("file:///android_asset/", webPageHtml, "text/html", "UTF-8", null);
     }
+
+    @Override
+    public void onDestroy() {
+        boolean isConfigChanging = getActivity().isChangingConfigurations();
+        presenter.onDestroy(isConfigChanging);
+        super.onDestroy();
+    }
 }
