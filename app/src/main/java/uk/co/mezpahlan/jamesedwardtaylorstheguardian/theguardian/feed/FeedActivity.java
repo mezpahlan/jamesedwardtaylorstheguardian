@@ -27,6 +27,7 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_theguardian_feed);
 
         setupToolbar();
+        setupTabNavigation();
         determinePaneLayout();
 
         if (null == savedInstanceState) {
@@ -38,7 +39,9 @@ public class FeedActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
+    private void setupTabNavigation() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         final TabLayout.Tab homeTab = tabLayout.newTab();
@@ -83,7 +86,6 @@ public class FeedActivity extends AppCompatActivity {
                 // Do nothing. Swipe to refresh can refresh
             }
         });
-
     }
 
     private void determinePaneLayout() {
