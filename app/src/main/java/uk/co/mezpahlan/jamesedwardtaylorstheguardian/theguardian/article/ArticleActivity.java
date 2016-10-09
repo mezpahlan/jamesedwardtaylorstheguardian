@@ -30,13 +30,17 @@ public class ArticleActivity extends AppCompatActivity {
         String articleId = intent.getStringExtra(EXTRA_ARTICLE_ID);
         String articleTitle = intent.getStringExtra(EXTRA_ARTICLE_TITLE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setupToolbar();
 
         if (null == savedInstanceState) {
             initFragment(ArticleFragment.newInstance(articleId, articleTitle));
         }
 
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void initFragment(Fragment feedFragment) {
