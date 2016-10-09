@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
+import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.GrayscaleTransformation;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Fields;
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.data.model.search.Result;
 
@@ -63,6 +64,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
                 .centerCrop()
                 .placeholder(R.drawable.ic_logo_guardian)
                 .error(R.drawable.ic_logo_guardian)
+                .transform(new GrayscaleTransformation(Picasso.with(thumbnailView.getContext())))
                 .into(thumbnailView);
 
         headlineView.setText(headline);
