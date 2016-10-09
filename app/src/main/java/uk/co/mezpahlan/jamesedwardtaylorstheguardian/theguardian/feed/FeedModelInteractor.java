@@ -1,5 +1,7 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
+import android.support.annotation.Nullable;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,8 +24,8 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     }
 
     @Override
-    public void fetch() {
-        Call<Search> call = client.search();
+    public void fetch(@Nullable String type) {
+        Call<Search> call = client.search(type);
 
         call.enqueue(new Callback<Search>() {
             @Override
@@ -45,6 +47,11 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
                 onError();
             }
         });
+    }
+
+    @Override
+    public void fetch() {
+        fetch(null);
     }
 
     @Override

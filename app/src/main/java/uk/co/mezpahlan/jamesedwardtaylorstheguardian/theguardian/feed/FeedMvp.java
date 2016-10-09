@@ -1,5 +1,7 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
+import android.support.annotation.Nullable;
+
 import java.util.List;
 
 import uk.co.mezpahlan.jamesedwardtaylorstheguardian.base.BaseMvp;
@@ -20,6 +22,7 @@ public interface FeedMvp {
     }
 
     interface ModelInteractor extends BaseMvp.ModelInteractor <Search> {
+        void fetch(@Nullable String type);
         void fetchCached();
     }
 }
