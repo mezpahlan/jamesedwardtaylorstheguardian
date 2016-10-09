@@ -23,7 +23,7 @@ public class ArticleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_theguardian_feed);
+        setContentView(R.layout.activity_theguardian_article);
 
         // Get the requested RSS Item Title and Link
         final Intent intent = getIntent();
@@ -47,7 +47,7 @@ public class ArticleActivity extends AppCompatActivity {
         // Add the FeedFragment to the layout
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.feed_frame_view, feedFragment);
+        transaction.replace(R.id.article_frame_view, feedFragment);
         transaction.commit();
     }
 
