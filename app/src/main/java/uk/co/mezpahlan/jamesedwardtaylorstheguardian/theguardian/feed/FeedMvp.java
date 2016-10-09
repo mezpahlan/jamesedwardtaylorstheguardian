@@ -17,6 +17,7 @@ public interface FeedMvp {
     }
 
     interface Presenter extends BaseMvp.Presenter <List<Result>> {
+        void load(String queryType);
         void onConfigurationChanged(View view);
         void onSelectResult(Result result);
     }

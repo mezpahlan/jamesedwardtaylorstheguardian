@@ -26,7 +26,7 @@ public class FeedActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (null == savedInstanceState) {
-            initFragment(FeedFragment.newInstance(determinePaneLayout()));
+            initFragment(FeedFragment.newInstance(determinePaneLayout(), null));
         }
 
     }

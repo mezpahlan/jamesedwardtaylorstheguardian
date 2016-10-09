@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
 
     private static final String TAG = "FeedFragment";
     public static final String ARGUMENT_FEED_IS_TWO_PANE = "FEED_IS_TWO_PANE";
+    public static final String ARGUMENT_FEED_TYPE = "FEED_TYPE";
 
     private StateMaintainer stateMaintainer;
     private FeedRecyclerViewAdapter listAdapter;
@@ -38,10 +40,12 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     private View contentView;
     private View errorView;
     private boolean isTwoPane;
+    private String type;
 
-    public static FeedFragment newInstance(boolean isTwoPane) {
+    public static FeedFragment newInstance(boolean isTwoPane, @Nullable String type) {
         Bundle arguments = new Bundle();
         arguments.putBoolean(ARGUMENT_FEED_IS_TWO_PANE, isTwoPane);
+        arguments.putString(ARGUMENT_FEED_TYPE, type);
 
         FeedFragment fragment = new FeedFragment();
         fragment.setArguments(arguments);
@@ -54,6 +58,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         super.onCreate(savedInstanceState);
 
         isTwoPane = getArguments().getBoolean(ARGUMENT_FEED_IS_TWO_PANE, false);
+        type = getArguments().getString(ARGUMENT_FEED_TYPE);
     }
 
     @Override
@@ -79,7 +84,11 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.load();
+                if (type == null) {
+                    presenter.load();
+                } else {
+                    presenter.load(type);
+                }
             }
         });
 
@@ -122,7 +131,11 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     private void initialise(FeedMvp.View view) throws InstantiationException, IllegalAccessException{
         presenter = new FeedPresenter(view);
         stateMaintainer.put(FeedMvp.Presenter.class.getSimpleName(), presenter);
-        presenter.load();
+        if (type == null) {
+            presenter.load();
+        } else {
+            presenter.load(type);
+        }
     }
 
     private void reinitialise(FeedMvp.View view) throws InstantiationException, IllegalAccessException {

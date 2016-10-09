@@ -26,6 +26,12 @@ public class FeedPresenter implements FeedMvp.Presenter {
     }
 
     @Override
+    public void load(String queryType) {
+        feedView.get().showLoading();
+        modelInteractor.fetch(queryType);
+    }
+
+    @Override
     public void onLoadSuccess(@NonNull List<Result> resultList) {
         feedView.get().updateContent(resultList);
         feedView.get().showContent();
