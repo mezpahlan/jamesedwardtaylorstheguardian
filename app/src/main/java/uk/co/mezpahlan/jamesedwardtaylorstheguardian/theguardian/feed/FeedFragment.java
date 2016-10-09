@@ -33,6 +33,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     private FeedRecyclerViewAdapter listAdapter;
     private FeedMvp.Presenter presenter;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private View loadingView;
     private View contentView;
     private View errorView;
@@ -69,11 +70,11 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Pull-to-refresh
-        SwipeRefreshLayout swipeRefreshLayout =
+        swipeRefreshLayout =
                 (SwipeRefreshLayout) root.findViewById(R.id.content_view);
         swipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorAccent),
+                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -141,7 +142,6 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         loadingView.setVisibility(View.VISIBLE);
         contentView.setVisibility(View.INVISIBLE);
         errorView.setVisibility(View.GONE);
-
     }
 
     @Override
@@ -149,7 +149,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         contentView.setVisibility(View.VISIBLE);
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -163,6 +163,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     public void updateContent(List<Result> resultList) {
         listAdapter.updateResults(resultList);
         listAdapter.notifyDataSetChanged();
+
     }
 
     /**
