@@ -18,6 +18,10 @@ body > p:first-child::first-letter {
     padding-left: 3px;
 }
 
+p {
+  padding: 16px;
+}
+
 img {
   padding: 0;
   display: block;
