@@ -17,7 +17,7 @@ public class ArticlePresenter implements ArticleMvp.Presenter {
 
     @Override
     public void load(String id) {
-        articleView.get().showLoading(false);
+        articleView.get().showLoading();
         modelInteractor.fetch(id);
     }
 
@@ -55,7 +55,7 @@ public class ArticlePresenter implements ArticleMvp.Presenter {
     @Override
     public void onConfigurationChanged(ArticleMvp.View view, String id) {
         articleView = new WeakReference<>(view);
-        articleView.get().showLoading(false);
+        articleView.get().showLoading();
         modelInteractor.fetchCached(id);
     }
 }

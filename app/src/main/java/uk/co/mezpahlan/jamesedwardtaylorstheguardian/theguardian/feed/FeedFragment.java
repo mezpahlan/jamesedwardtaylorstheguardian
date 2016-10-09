@@ -79,7 +79,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.load(true);
+                presenter.load();
             }
         });
 
@@ -122,7 +122,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     private void initialise(FeedMvp.View view) throws InstantiationException, IllegalAccessException{
         presenter = new FeedPresenter(view);
         stateMaintainer.put(FeedMvp.Presenter.class.getSimpleName(), presenter);
-        presenter.load(false);
+        presenter.load();
     }
 
     private void reinitialise(FeedMvp.View view) throws InstantiationException, IllegalAccessException {
@@ -138,7 +138,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     }
 
     @Override
-    public void showLoading(boolean active) {
+    public void showLoading() {
         loadingView.setVisibility(View.VISIBLE);
         contentView.setVisibility(View.INVISIBLE);
         errorView.setVisibility(View.GONE);

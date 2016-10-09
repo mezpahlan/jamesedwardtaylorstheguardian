@@ -20,8 +20,8 @@ public class FeedPresenter implements FeedMvp.Presenter {
     }
 
     @Override
-    public void load(boolean isUserDrive) {
-        feedView.get().showLoading(isUserDrive);
+    public void load() {
+        feedView.get().showLoading();
         modelInteractor.fetch();
     }
 
@@ -44,7 +44,7 @@ public class FeedPresenter implements FeedMvp.Presenter {
     @Override
     public void onConfigurationChanged(FeedMvp.View view) {
         feedView = new WeakReference<>(view);
-        feedView.get().showLoading(false);
+        feedView.get().showLoading();
         modelInteractor.fetchCached();
     }
 

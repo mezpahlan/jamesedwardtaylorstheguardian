@@ -117,7 +117,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     }
 
     @Override
-    public void showLoading(boolean active) {
+    public void showLoading() {
         loadingView.setVisibility(View.VISIBLE);
         webView.setVisibility(View.INVISIBLE);
         errorView.setVisibility(View.GONE);
