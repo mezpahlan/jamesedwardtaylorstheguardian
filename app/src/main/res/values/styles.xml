@@ -22,6 +22,11 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="Merriweather.Regular" parent="Base.TextAppearance.AppCompat">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Merriweather-Regular.ttf</item>
+    </style>
+
     <style name="Merriweather.Bold" parent="android:TextAppearance">
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Merriweather-Bold.ttf</item>
