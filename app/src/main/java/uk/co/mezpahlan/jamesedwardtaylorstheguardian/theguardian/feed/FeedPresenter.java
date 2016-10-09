@@ -1,6 +1,7 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -44,14 +45,17 @@ public class FeedPresenter implements FeedMvp.Presenter {
 
     @Override
     public void onDestroy(boolean isConfigChanging) {
-
+        feedView = null;
+        if (!isConfigChanging) {
+            modelInteractor.onDestroy();
+        }
     }
 
     @Override
-    public void onConfigurationChanged(FeedMvp.View view) {
+    public void onConfigurationChanged(FeedMvp.View view, @Nullable String queryType) {
         feedView = new WeakReference<>(view);
         feedView.get().showLoading();
-        modelInteractor.fetchCached();
+        modelInteractor.fetchCached(queryType);
     }
 
     @Override

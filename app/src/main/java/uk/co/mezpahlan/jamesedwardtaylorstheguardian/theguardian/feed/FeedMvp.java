@@ -18,12 +18,12 @@ public interface FeedMvp {
 
     interface Presenter extends BaseMvp.Presenter <List<Result>> {
         void load(String queryType);
-        void onConfigurationChanged(View view);
+        void onConfigurationChanged(View view, @Nullable String queryType);
         void onSelectResult(Result result);
     }
 
     interface ModelInteractor extends BaseMvp.ModelInteractor <Search> {
-        void fetch(@Nullable String type);
-        void fetchCached();
+        void fetch(@Nullable String queryType);
+        void fetchCached(@Nullable String queryType);
     }
 }

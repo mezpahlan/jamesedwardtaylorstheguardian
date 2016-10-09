@@ -19,15 +19,18 @@ import uk.co.mezpahlan.jamesedwardtaylorstheguardian.R;
  */
 public class FeedActivity extends AppCompatActivity {
 
+    private boolean isTwoPane;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theguardian_feed);
 
         setupToolbar();
+        determinePaneLayout();
 
         if (null == savedInstanceState) {
-            initFragment(FeedFragment.newInstance(determinePaneLayout(), null));
+            initFragment(FeedFragment.newInstance(isTwoPane, null));
         }
 
     }
@@ -53,26 +56,53 @@ public class FeedActivity extends AppCompatActivity {
         tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.colorAccent));
         tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent));
 
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        initFragment(FeedFragment.newInstance(isTwoPane, null));
+                        break;
+                    case 1:
+                        initFragment(FeedFragment.newInstance(isTwoPane, "article"));
+                        break;
+                    case 2:
+                        initFragment(FeedFragment.newInstance(isTwoPane, "liveblog"));
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                // Do nothing. Swipe to refresh can refresh
+            }
+        });
+
     }
 
-    private boolean determinePaneLayout() {
-        boolean isTwoPane = false;
+    private void determinePaneLayout() {
         // Try and find the "Detail" frame view in the "Master" view to determine which layout we are in.
         // If we find it then we assume we are in a two-pane layout with "Master-Detail".
         // If we don't then we assume we are in a single-pane mode with "Master" and "Detail" in different activities.
         View detailFrameView = findViewById(R.id.article_frame_view);
         if (detailFrameView != null) {
             isTwoPane = true;
+        } else {
+            isTwoPane = false;
         }
-
-        return isTwoPane;
     }
 
     private void initFragment(Fragment feedFragment) {
         // Add the FeedFragment to the layout
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.feed_frame_view, feedFragment);
+        transaction.replace(R.id.feed_frame_view, feedFragment);
         transaction.commit();
     }
 

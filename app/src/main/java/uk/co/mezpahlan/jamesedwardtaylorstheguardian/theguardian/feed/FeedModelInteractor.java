@@ -24,8 +24,8 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     }
 
     @Override
-    public void fetch(@Nullable String type) {
-        Call<Search> call = client.search(type);
+    public void fetch(@Nullable String queryType) {
+        Call<Search> call = client.search(queryType);
 
         call.enqueue(new Callback<Search>() {
             @Override
@@ -60,9 +60,9 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     }
 
     @Override
-    public void fetchCached() {
+    public void fetchCached(@Nullable String queryType) {
         if (cachedSearch == null) {
-            fetch();
+            fetch(queryType);
         } else {
             onFetched(cachedSearch);
         }
@@ -75,6 +75,6 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
 
     @Override
     public void onDestroy() {
-
+        cachedSearch = null;
     }
 }

@@ -146,7 +146,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
             initialise(view);
         } else {
             // Otherwise tell it that the configuration has changed
-            presenter.onConfigurationChanged(view);
+            presenter.onConfigurationChanged(view, type);
         }
     }
 
@@ -176,18 +176,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     public void updateContent(List<Result> resultList) {
         listAdapter.updateResults(resultList);
         listAdapter.notifyDataSetChanged();
-
     }
-
-    /**
-     * Listener for clicks on items in the RecyclerView.
-     */
-    ResultClickListener resultClickListener = new ResultClickListener() {
-        @Override
-        public void onResultClick(Result result) {
-            presenter.onSelectResult(result);
-        }
-    };
 
     @Override
     public void showGuardianArticle(String articleId, String articleTitle) {
@@ -205,6 +194,23 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
             startActivity(intent);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        boolean isConfigChanging = getActivity().isChangingConfigurations();
+        presenter.onDestroy(isConfigChanging);
+        super.onDestroy();
+    }
+
+    /**
+     * Listener for clicks on items in the RecyclerView.
+     */
+    ResultClickListener resultClickListener = new ResultClickListener() {
+        @Override
+        public void onResultClick(Result result) {
+            presenter.onSelectResult(result);
+        }
+    };
 
     public interface ResultClickListener {
         void onResultClick(Result result);
