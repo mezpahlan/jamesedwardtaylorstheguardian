@@ -2,6 +2,7 @@ package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.feed;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -18,6 +19,13 @@ public class FeedPresenter implements FeedMvp.Presenter {
     public FeedPresenter(@NonNull FeedMvp.View feedView) {
         this.feedView = new WeakReference<>(feedView);
         modelInteractor = new FeedModelInteractor(this);
+    }
+
+
+    @VisibleForTesting
+    FeedPresenter(@NonNull FeedMvp.View feedView, FeedMvp.ModelInteractor modelInteractor) {
+        this.feedView = new WeakReference<>(feedView);
+        this.modelInteractor = modelInteractor;
     }
 
     @Override
