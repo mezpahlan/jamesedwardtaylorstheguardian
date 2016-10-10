@@ -1,8 +1,10 @@
 package uk.co.mezpahlan.jamesedwardtaylorstheguardian.theguardian.article;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import java.lang.ref.WeakReference;
+
 /**
  * Presenter for TheGuardian.Article.
  */
@@ -13,6 +15,12 @@ public class ArticlePresenter implements ArticleMvp.Presenter {
     public ArticlePresenter(@NonNull ArticleMvp.View articleView) {
         this.articleView = new WeakReference<>(articleView);
         modelInteractor = new ArticleModelInteractor(this);
+    }
+
+    @VisibleForTesting
+    ArticlePresenter(@NonNull ArticleMvp.View articleView, ArticleMvp.ModelInteractor modelInteractor) {
+        this.articleView = new WeakReference<>(articleView);
+        this.modelInteractor = modelInteractor;
     }
 
     @Override
