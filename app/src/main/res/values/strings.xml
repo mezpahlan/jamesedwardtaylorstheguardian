@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">James Edward Taylor\'s The Guardian</string>
+    <string name="app_name">Old Time Rag</string>
     <string name="section_label">Section</string>
     <string name="published_on_label">Published on</string>
     <string name="error_text">Hmmm...... that\'s not good.</string>
