@@ -36,6 +36,7 @@ dependencies {
 
     // Test dependencies
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.1.0'
 
     // Instrumentation test dependencies
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
