@@ -19,7 +19,9 @@ import uk.co.mezpahlan.oldtimerag.R;
  */
 public class FeedActivity extends AppCompatActivity {
 
+    private static final String STATE_SELECTED_TAB = "STATE_SELECTED_TAB";
     private boolean isTwoPane;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     private void setupTabNavigation() {
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         final TabLayout.Tab homeTab = tabLayout.newTab();
         final TabLayout.Tab articlesTab = tabLayout.newTab();
@@ -111,5 +113,23 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save custom values into the bundle
+        savedInstanceState.putInt(STATE_SELECTED_TAB, tabLayout.getSelectedTabPosition());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore a previously selected Tab
+        tabLayout.getTabAt(savedInstanceState.getInt(STATE_SELECTED_TAB, 0)).select();
     }
 }
