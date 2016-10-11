@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,9 +45,9 @@ public class FeedActivity extends AppCompatActivity {
     private void setupTabNavigation() {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        final TabLayout.Tab homeTab = tabLayout.newTab();
-        final TabLayout.Tab articlesTab = tabLayout.newTab();
-        final TabLayout.Tab liveBlogTab = tabLayout.newTab();
+        final TabLayout.Tab homeTab = tabLayout.newTab().setCustomView(R.layout.tab_text);
+        final TabLayout.Tab articlesTab = tabLayout.newTab().setCustomView(R.layout.tab_text);
+        final TabLayout.Tab liveBlogTab = tabLayout.newTab().setCustomView(R.layout.tab_text);
 
         homeTab.setText("All");
         articlesTab.setText("Articles");
@@ -57,9 +56,6 @@ public class FeedActivity extends AppCompatActivity {
         tabLayout.addTab(homeTab, 0);
         tabLayout.addTab(articlesTab, 1);
         tabLayout.addTab(liveBlogTab, 2);
-
-        tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.colorAccent));
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
