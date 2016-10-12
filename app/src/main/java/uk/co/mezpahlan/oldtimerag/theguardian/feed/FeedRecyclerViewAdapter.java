@@ -62,8 +62,8 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
                 .load(thumbnailUrl)
                 .fit()
                 .centerCrop()
-                .placeholder(R.drawable.ic_logo_guardian)
-                .error(R.drawable.ic_logo_guardian)
+                .placeholder(R.drawable.old_time_rag_no_text)
+                .error(R.drawable.old_time_rag_no_text)
                 .transform(new GrayscaleTransformation(Picasso.with(thumbnailView.getContext())))
                 .into(thumbnailView);
 

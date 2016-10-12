@@ -5,30 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:id="@+id/error_view">
 
         <ImageView
             android:id="@+id/error_image_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_logo_guardian"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_weight="6"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/old_time_rag_no_text" />
 
         <TextView
             android:id="@+id/error_text_view"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/error_image_view"
-            android:layout_centerHorizontal="true"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/error_text"/>
+            android:layout_gravity="center"
+            android:text="@string/error_text"
+            />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </merge>

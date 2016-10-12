@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
-            tools:src="@drawable/ic_logo_guardian" />
+            tools:src="@drawable/old_time_rag_no_text" />
 
         <TextView
             android:id="@+id/headline_view"
