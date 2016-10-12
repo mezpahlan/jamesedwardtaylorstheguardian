@@ -3,6 +3,8 @@ package uk.co.mezpahlan.oldtimerag.data.model.search;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
@@ -183,7 +185,30 @@ public class Result {
         this.fields = fields;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Result)) return false;
+        Result result = (Result) o;
+        return isHosted == result.isHosted &&
+                Objects.equals(webUrl, result.webUrl) &&
+                Objects.equals(webPublicationDate, result.webPublicationDate) &&
+                Objects.equals(webTitle, result.webTitle) &&
+                Objects.equals(sectionName, result.sectionName) &&
+                Objects.equals(apiUrl, result.apiUrl) &&
+                Objects.equals(id, result.id) &&
+                Objects.equals(fields, result.fields) &&
+                Objects.equals(sectionId, result.sectionId) &&
+                Objects.equals(type, result.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(webUrl, webPublicationDate, webTitle, sectionName, apiUrl, id, isHosted, fields, sectionId, type);
+    }
+
     /**
+
      *
      * @return
      *     The sectionId

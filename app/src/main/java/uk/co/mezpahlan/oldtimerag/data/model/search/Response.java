@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -17,8 +18,31 @@ public class Response {
     @SerializedName("pageSize")
     @Expose
     private int pageSize;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Response)) return false;
+        Response response = (Response) o;
+        return currentPage == response.currentPage &&
+                pageSize == response.pageSize &&
+                pages == response.pages &&
+                total == response.total &&
+                startIndex == response.startIndex &&
+                Objects.equals(userTier, response.userTier) &&
+                Objects.equals(results, response.results) &&
+                Objects.equals(status, response.status) &&
+                Objects.equals(orderBy, response.orderBy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(currentPage, pageSize, pages, total, userTier, startIndex, results, status, orderBy);
+    }
+
     @SerializedName("pages")
     @Expose
+
     private int pages;
     @SerializedName("total")
     @Expose

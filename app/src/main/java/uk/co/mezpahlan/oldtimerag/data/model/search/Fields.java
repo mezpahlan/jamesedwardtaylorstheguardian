@@ -4,6 +4,8 @@ package uk.co.mezpahlan.oldtimerag.data.model.search;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
@@ -12,6 +14,22 @@ public class Fields {
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fields)) return false;
+        Fields fields = (Fields) o;
+        return Objects.equals(thumbnail, fields.thumbnail) &&
+                Objects.equals(trailText, fields.trailText) &&
+                Objects.equals(headline, fields.headline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(thumbnail, trailText, headline);
+    }
+
     @SerializedName("trailText")
     @Expose
     private String trailText;
