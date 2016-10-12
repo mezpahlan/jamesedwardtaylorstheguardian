@@ -64,7 +64,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.setWebViewClient(new ArticleWebViewClient());
+        webView.setWebViewClient(new ArticleWebViewClient(this));
     }
 
     @Override
