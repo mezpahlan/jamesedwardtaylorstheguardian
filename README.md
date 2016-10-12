@@ -4,7 +4,7 @@ An Android reader for [The Guardian](https://www.theguardian.com) written using 
 
 ## Get the app
 
-The app is currently in beta testing. You can download the beta on the [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.mezpahlan.oldtimerag).
+<a href='https://play.google.com/store/apps/details?id=uk.co.mezpahlan.oldtimerag&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
 
 ## Why the name?
 
