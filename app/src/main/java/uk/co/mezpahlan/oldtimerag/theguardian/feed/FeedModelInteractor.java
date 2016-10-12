@@ -19,8 +19,8 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     private GuardianOpenPlatformClient client;
     private Search cachedSearch;
 
-    public FeedModelInteractor(FeedMvp.Presenter itemPresenter) {
-        this.feedPresenter = itemPresenter;
+    public FeedModelInteractor(FeedMvp.Presenter feedPresenter) {
+        this.feedPresenter = feedPresenter;
         client = GuardianOpenPlatformServiceGenerator.createSearchService(GuardianOpenPlatformClient.class);
     }
 
