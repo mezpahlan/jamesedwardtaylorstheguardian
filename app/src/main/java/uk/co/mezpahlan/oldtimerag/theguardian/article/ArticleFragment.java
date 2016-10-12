@@ -9,7 +9,6 @@ import android.webkit.WebView;
 
 import uk.co.mezpahlan.oldtimerag.R;
 import uk.co.mezpahlan.oldtimerag.base.StateMaintainer;
-import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedMvp;
 
 /**
  *  Fragment for TheGuardian.Article. Part of the View Layer.
@@ -100,12 +99,12 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
 
     private void initialise(ArticleMvp.View view) throws InstantiationException, IllegalAccessException{
         presenter = new ArticlePresenter(view);
-        stateMaintainer.put(FeedMvp.Presenter.class.getSimpleName(), presenter);
+        stateMaintainer.put(ArticleMvp.Presenter.class.getSimpleName(), presenter);
         presenter.load(articleId);
     }
 
     private void reinitialise(ArticleMvp.View view) throws InstantiationException, IllegalAccessException {
-        presenter = stateMaintainer.get(FeedMvp.Presenter.class.getSimpleName());
+        presenter = stateMaintainer.get(ArticleMvp.Presenter.class.getSimpleName());
 
         if (presenter == null) {
             // If we can't find a presenter assume that its not there and initialise it again.
