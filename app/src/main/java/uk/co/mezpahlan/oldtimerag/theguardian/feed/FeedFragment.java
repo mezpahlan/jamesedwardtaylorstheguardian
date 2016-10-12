@@ -28,8 +28,8 @@ import uk.co.mezpahlan.oldtimerag.theguardian.article.ArticleFragment;
 public class FeedFragment extends Fragment implements FeedMvp.View {
 
     private static final String TAG = "FeedFragment";
-    public static final String ARGUMENT_FEED_IS_TWO_PANE = "FEED_IS_TWO_PANE";
-    public static final String ARGUMENT_FEED_TYPE = "FEED_TYPE";
+    private static final String ARGUMENT_FEED_IS_TWO_PANE = "FEED_IS_TWO_PANE";
+    private static final String ARGUMENT_FEED_TYPE = "FEED_TYPE";
 
     private StateMaintainer stateMaintainer;
     private FeedRecyclerViewAdapter listAdapter;
@@ -205,7 +205,7 @@ public class FeedFragment extends Fragment implements FeedMvp.View {
     /**
      * Listener for clicks on items in the RecyclerView.
      */
-    ResultClickListener resultClickListener = new ResultClickListener() {
+    private ResultClickListener resultClickListener = new ResultClickListener() {
         @Override
         public void onResultClick(Result result) {
             presenter.onSelectResult(result);

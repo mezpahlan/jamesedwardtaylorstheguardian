@@ -15,8 +15,8 @@ import uk.co.mezpahlan.oldtimerag.base.StateMaintainer;
  */
 public class ArticleFragment extends Fragment implements ArticleMvp.View{
 
-    public static final String ARGUMENT_ARTICLE_ID = "ARTICLE_ID";
-    public static final String ARGUMENT_ARTICLE_TITLE = "ARTICLE_TITLE";
+    private static final String ARGUMENT_ARTICLE_ID = "ARTICLE_ID";
+    private static final String ARGUMENT_ARTICLE_TITLE = "ARTICLE_TITLE";
     private static final String TAG = "ArticleFragment";
 
     private StateMaintainer stateMaintainer;

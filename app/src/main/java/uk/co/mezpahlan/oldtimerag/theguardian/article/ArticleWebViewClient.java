@@ -10,7 +10,7 @@ import android.webkit.WebViewClient;
  * WebViewClient for TheGuardian.Article. Customises the behaviour, look, and feel of the articles.
  */
 
-public class ArticleWebViewClient extends WebViewClient {
+class ArticleWebViewClient extends WebViewClient {
     @SuppressWarnings("deprecation")
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {

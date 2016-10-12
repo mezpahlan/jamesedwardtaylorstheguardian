@@ -95,11 +95,11 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
         }
     }
 
-    public Result getResultWithPosition(int position) {
+    private Result getResultWithPosition(int position) {
         return resultList.get(position);
     }
 
-    public class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView thumbnailView;
         private TextView headlineView;
         private TextView trailTextView;
@@ -108,7 +108,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
 
         private FeedFragment.ResultClickListener clickListener;
 
-        public FeedViewHolder(View itemView, FeedFragment.ResultClickListener clickListener) {
+        FeedViewHolder(View itemView, FeedFragment.ResultClickListener clickListener) {
             super(itemView);
             this.clickListener = clickListener;
 
@@ -121,11 +121,11 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<FeedRecyclerVi
             itemView.setOnClickListener(this);
         }
 
-        public ImageView getThumbnailView() { return thumbnailView; }
-        public TextView getHeadlineView() { return headlineView; }
-        public TextView getTrailTextView() { return trailTextView; }
-        public TextView getPublishedOnView() { return publishedOnView; }
-        public TextView getSectionView() { return sectionView; }
+        ImageView getThumbnailView() { return thumbnailView; }
+        TextView getHeadlineView() { return headlineView; }
+        TextView getTrailTextView() { return trailTextView; }
+        TextView getPublishedOnView() { return publishedOnView; }
+        TextView getSectionView() { return sectionView; }
 
         @Override
         public void onClick(View v) {
