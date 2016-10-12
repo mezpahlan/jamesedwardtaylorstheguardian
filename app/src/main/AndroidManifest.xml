@@ -11,7 +11,9 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
-        <activity android:name="uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedActivity">
+        <activity
+            android:name="uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedActivity"
+            android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
