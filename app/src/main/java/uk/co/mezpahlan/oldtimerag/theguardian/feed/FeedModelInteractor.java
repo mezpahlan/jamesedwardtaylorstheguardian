@@ -1,6 +1,7 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed;
 
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +22,12 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     public FeedModelInteractor(FeedMvp.Presenter itemPresenter) {
         this.feedPresenter = itemPresenter;
         client = GuardianOpenPlatformServiceGenerator.createSearchService(GuardianOpenPlatformClient.class);
+    }
+
+    @VisibleForTesting
+    public FeedModelInteractor(FeedMvp.Presenter feedPresenter, GuardianOpenPlatformClient client) {
+        this.feedPresenter = feedPresenter;
+        this.client = client;
     }
 
     @Override

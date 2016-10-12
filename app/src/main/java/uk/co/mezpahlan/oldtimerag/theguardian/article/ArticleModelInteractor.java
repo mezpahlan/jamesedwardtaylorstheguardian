@@ -1,5 +1,7 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.article;
 
+import android.support.annotation.VisibleForTesting;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,6 +22,12 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
     public ArticleModelInteractor(ArticleMvp.Presenter articlePresenter) {
         this.articlePresenter = articlePresenter;
         client = GuardianOpenPlatformServiceGenerator.createSingleItemService(GuardianOpenPlatformClient.class);
+    }
+
+    @VisibleForTesting
+    ArticleModelInteractor(ArticleMvp.Presenter articlePresenter, GuardianOpenPlatformClient client) {
+        this.articlePresenter = articlePresenter;
+        this.client = client;
     }
 
     @Override
