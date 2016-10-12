@@ -22,7 +22,7 @@ p {
   padding: 16px;
 }
 
-img {
+img, figure, figure iframe {
   padding: 0;
   display: block;
   margin: 0 auto;
