@@ -3,7 +3,7 @@ package uk.co.mezpahlan.oldtimerag.theguardian.article;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -15,8 +15,11 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ArticlePresenterTest {
 
-    @Mock ArticleMvp.View view;
-    @Mock ArticleMvp.ModelInteractor modelInteractor;
+    @Mock
+    private ArticleMvp.View view;
+
+    @Mock
+    private ArticleMvp.ModelInteractor modelInteractor;
 
     @Test
     public void presenter_load_id() throws Exception {
@@ -38,16 +41,16 @@ public class ArticlePresenterTest {
         ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
         String articleHtml = "test";
         String webpageHtml = "<!DOCTYPE html> \n" +
-                                "<html>\n" +
-                                "<head>\n" +
-                                "  <meta charset=\"utf-8\">\n" +
-                                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-                                "  <link rel=\"stylesheet\" href=\"style.css\">\n" +
-                                "</head>\n" +
-                                    "<body>" +
-                                    "test" +
-                                    "</body>\n" +
-                                "</html>";
+                "<html>\n" +
+                "<head>\n" +
+                "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                "  <link rel=\"stylesheet\" href=\"style.css\">\n" +
+                "</head>\n" +
+                "<body>" +
+                "test" +
+                "</body>\n" +
+                "</html>";
 
         // When
         presenter.onLoadSuccess(articleHtml);

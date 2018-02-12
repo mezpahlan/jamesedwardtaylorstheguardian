@@ -4,7 +4,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import retrofit2.Call;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
@@ -26,14 +26,26 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ArticleModelInteractorTest {
 
-    @Mock uk.co.mezpahlan.oldtimerag.theguardian.article.ArticleMvp.Presenter presenter;
-    @Mock GuardianOpenPlatformClient client;
-    @Mock Call<SingleItem> call;
-    @Mock SingleItem singleItem;
-    @Mock Response response;
-    @Mock Content content;
-    @Mock Fields fields;
-//    @Mock Body body;
+    @Mock
+    private ArticleMvp.Presenter presenter;
+
+    @Mock
+    private GuardianOpenPlatformClient client;
+
+    @Mock
+    private Call<SingleItem> call;
+
+    @Mock
+    private SingleItem singleItem;
+
+    @Mock
+    private Response response;
+
+    @Mock
+    private Content content;
+
+    @Mock
+    private Fields fields;
 
     @Test
     public void modelInteractor_fetch_nonNullId() throws Exception {
