@@ -3,7 +3,7 @@ package uk.co.mezpahlan.oldtimerag.theguardian.feed;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,10 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class FeedPresenterTest {
 
-    @Mock FeedMvp.View view;
-    @Mock FeedMvp.ModelInteractor modelInteractor;
+    @Mock
+    private FeedMvp.View view;
+    @Mock
+    private FeedMvp.ModelInteractor modelInteractor;
 
     @Test
     public void presenter_load() throws Exception {

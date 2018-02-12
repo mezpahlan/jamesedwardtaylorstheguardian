@@ -4,7 +4,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import retrofit2.Call;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
@@ -25,12 +25,23 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class FeedModelInteractorTest {
 
-    @Mock FeedMvp.Presenter itemPresenter;
-    @Mock GuardianOpenPlatformClient client;
-    @Mock Call<Search> call;
-    @Mock Search search;
-    @Mock Response response;
-    @Mock java.util.List<Result> results;
+    @Mock
+    private FeedMvp.Presenter itemPresenter;
+
+    @Mock
+    private GuardianOpenPlatformClient client;
+
+    @Mock
+    private Call<Search> call;
+
+    @Mock
+    private Search search;
+
+    @Mock
+    private Response response;
+
+    @Mock
+    private java.util.List<Result> results;
 
     @Test
     public void modelInteractor_fetch_nullQueryType() throws Exception {
