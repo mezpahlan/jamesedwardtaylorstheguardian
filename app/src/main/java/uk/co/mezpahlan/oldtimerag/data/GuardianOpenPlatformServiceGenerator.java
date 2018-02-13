@@ -1,5 +1,7 @@
 package uk.co.mezpahlan.oldtimerag.data;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -8,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.mezpahlan.oldtimerag.base.Constants;
 
@@ -46,7 +49,7 @@ public class GuardianOpenPlatformServiceGenerator {
 
     private static final OkHttpClient.Builder httpSingleItemClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
         @Override
-        public Response intercept(Interceptor.Chain chain) throws IOException {
+        public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
             Request original = chain.request();
             HttpUrl originalHttpUrl = original.url();
 
@@ -66,7 +69,8 @@ public class GuardianOpenPlatformServiceGenerator {
 
     private static final Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create());
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
     public static <S> S createSearchService(Class<S> serviceClass) {
         Retrofit retrofit = GuardianOpenPlatformServiceGenerator.builder.client(httpSearchClient.build()).build();
