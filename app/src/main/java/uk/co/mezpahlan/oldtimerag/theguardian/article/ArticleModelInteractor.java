@@ -2,9 +2,6 @@ package uk.co.mezpahlan.oldtimerag.theguardian.article;
 
 import android.support.annotation.VisibleForTesting;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformServiceGenerator;
 import uk.co.mezpahlan.oldtimerag.data.model.singleitem.SingleItem;
@@ -32,32 +29,13 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
     @Override
     public void fetch(String id) {
-        Call<SingleItem> call = client.singleItem(id);
-
-        call.enqueue(new Callback<SingleItem>() {
-            @Override
-            public void onResponse(Call<SingleItem> call, Response<SingleItem> response) {
-                if (response.isSuccessful()) {
-                    // We just want the response. Don't do any conversions here.
-                    // Cache response as we might need it later
-                    cachedSingleItem = response.body();
-                    onFetched(cachedSingleItem);
-                } else {
-                    // We just want the error. Don't do any conversions here.
-                    onError();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SingleItem> call, Throwable t) {
-                // We just want the error. Don't do any conversions here.
-                onError();
-            }
-        });
+        client.singleItem(id)
+                .subscribe(this::onFetched, throwable -> onError());
     }
 
     @Override
     public void onFetched(SingleItem singleItem) {
+        cachedSingleItem = singleItem;
         articlePresenter.onLoadSuccess(singleItem.getResponse().getContent().getFields().getBody());
     }
 

@@ -1,6 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.data;
 
-import retrofit2.Call;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -12,8 +12,8 @@ import uk.co.mezpahlan.oldtimerag.data.model.singleitem.SingleItem;
  */
 public interface GuardianOpenPlatformClient {
     @GET("search")
-    Call<Search> search(@Query("type") String type);
+    Single<Search> search(@Query("type") String type);
 
     @GET
-    Call<SingleItem> singleItem(@Url String id);
+    Single<SingleItem> singleItem(@Url String id);
 }
