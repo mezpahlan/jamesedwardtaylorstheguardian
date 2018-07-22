@@ -3,6 +3,10 @@ package uk.co.mezpahlan.oldtimerag.theguardian.feed;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformServiceGenerator;
 import uk.co.mezpahlan.oldtimerag.data.model.search.Search;
@@ -15,6 +19,7 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     private FeedMvp.Presenter feedPresenter;
     private GuardianOpenPlatformClient client;
     private Search cachedSearch;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public FeedModelInteractor(FeedMvp.Presenter feedPresenter) {
         this.feedPresenter = feedPresenter;
@@ -29,8 +34,12 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
 
     @Override
     public void fetch(@Nullable String queryType) {
-        client.search(queryType)
+        final Disposable disposable = client.search(queryType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onFetched, throwable -> onError());
+
+        compositeDisposable.add(disposable);
     }
 
     @Override
@@ -61,5 +70,6 @@ public class FeedModelInteractor implements FeedMvp.ModelInteractor {
     @Override
     public void onDestroy() {
         cachedSearch = null;
+        compositeDisposable.dispose();
     }
 }

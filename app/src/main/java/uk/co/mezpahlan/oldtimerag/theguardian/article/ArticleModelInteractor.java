@@ -2,6 +2,10 @@ package uk.co.mezpahlan.oldtimerag.theguardian.article;
 
 import android.support.annotation.VisibleForTesting;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
 import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformServiceGenerator;
 import uk.co.mezpahlan.oldtimerag.data.model.singleitem.SingleItem;
@@ -15,6 +19,7 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
     private ArticleMvp.Presenter articlePresenter;
     private SingleItem cachedSingleItem;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public ArticleModelInteractor(ArticleMvp.Presenter articlePresenter) {
         this.articlePresenter = articlePresenter;
@@ -29,8 +34,12 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
 
     @Override
     public void fetch(String id) {
-        client.singleItem(id)
+        final Disposable disposable = client.singleItem(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onFetched, throwable -> onError());
+
+        compositeDisposable.add(disposable);
     }
 
     @Override
@@ -56,5 +65,6 @@ public class ArticleModelInteractor implements ArticleMvp.ModelInteractor {
     @Override
     public void onDestroy() {
         cachedSingleItem = null;
+        compositeDisposable.dispose();
     }
 }
