@@ -1,7 +1,7 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.article;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +11,9 @@ import uk.co.mezpahlan.oldtimerag.R;
 import uk.co.mezpahlan.oldtimerag.base.StateMaintainer;
 
 /**
- *  Fragment for TheGuardian.Article. Part of the View Layer.
+ * Fragment for TheGuardian.Article. Part of the View Layer.
  */
-public class ArticleFragment extends Fragment implements ArticleMvp.View{
+public class ArticleFragment extends Fragment implements ArticleMvp.View {
 
     private static final String ARGUMENT_ARTICLE_ID = "ARTICLE_ID";
     private static final String ARGUMENT_ARTICLE_TITLE = "ARTICLE_TITLE";
@@ -54,11 +54,11 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
     }
 
     @Override
-    public void onViewCreated (View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadingView = view.findViewById(R.id.loading_view);
-        webView = (WebView) view.findViewById(R.id.web_view);
-        errorView = view.findViewById(R.id.error_view);
+        loadingView = view.findViewById(R.id.loadingView);
+        webView = (WebView) view.findViewById(R.id.webView);
+        errorView = view.findViewById(R.id.errorView);
 
         // Configure the webView with sensible defaults
         webView.getSettings().setLoadsImagesAutomatically(true);
@@ -97,7 +97,7 @@ public class ArticleFragment extends Fragment implements ArticleMvp.View{
         }
     }
 
-    private void initialise(ArticleMvp.View view) throws InstantiationException, IllegalAccessException{
+    private void initialise(ArticleMvp.View view) throws InstantiationException, IllegalAccessException {
         presenter = new ArticlePresenter(view);
         stateMaintainer.put(ArticleMvp.Presenter.class.getSimpleName(), presenter);
         presenter.load(articleId);
