@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardCornerRadius="8dp">
+    card_view:cardCornerRadius="8dp"
+    card_view:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/relativeLayout"
@@ -16,20 +15,20 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/thumbnail_view"
+            android:id="@+id/thumbnailView"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:layout_marginBottom="100dp"
             android:layout_marginTop="6dp"
             android:scaleType="centerCrop"
-            card_view:layout_constraintBottom_toTopOf="@+id/published_on_label_view"
+            card_view:layout_constraintBottom_toTopOf="@+id/publishedOnLabelView"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/old_time_rag_no_text"/>
+            tools:src="@drawable/old_time_rag_no_text" />
 
         <TextView
-            android:id="@+id/headline_view"
+            android:id="@+id/headlineView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -41,27 +40,26 @@
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/trail_text_view"
+            card_view:layout_constraintBottom_toTopOf="@+id/trailTextView"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/thumbnail_view"
-            tools:text="Headline for the article"/>
+            card_view:layout_constraintTop_toBottomOf="@+id/thumbnailView"
+            tools:text="Headline for the article" />
 
         <TextView
-            android:id="@+id/trail_text_view"
+            android:id="@+id/trailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textSize="13sp"
-            card_view:layout_constraintBottom_toTopOf="@+id/section_label_view"
-            card_view:layout_constraintEnd_toStartOf="@+id/section_view"
-            card_view:layout_constraintStart_toStartOf="@+id/section_view"
-            card_view:layout_constraintTop_toBottomOf="@+id/headline_view"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae."/>
-
+            card_view:layout_constraintBottom_toTopOf="@+id/sectionLabelView"
+            card_view:layout_constraintEnd_toStartOf="@+id/sectionView"
+            card_view:layout_constraintStart_toStartOf="@+id/sectionView"
+            card_view:layout_constraintTop_toBottomOf="@+id/headlineView"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae." />
 
         <TextView
-            android:id="@+id/published_on_label_view"
+            android:id="@+id/publishedOnLabelView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="94dp"
@@ -72,13 +70,13 @@
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/published_on_view"
-            card_view:layout_constraintEnd_toStartOf="@+id/section_label_view"
+            card_view:layout_constraintBottom_toTopOf="@+id/publishedOnView"
+            card_view:layout_constraintEnd_toStartOf="@+id/sectionLabelView"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/thumbnail_view"/>
+            card_view:layout_constraintTop_toBottomOf="@+id/thumbnailView" />
 
         <TextView
-            android:id="@+id/published_on_view"
+            android:id="@+id/publishedOnView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -88,14 +86,13 @@
             android:layout_marginStart="21dp"
             android:textSize="13sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/section_view"
+            card_view:layout_constraintEnd_toStartOf="@+id/sectionView"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/published_on_label_view"
-            tools:text="31-12-1999"/>
-
+            card_view:layout_constraintTop_toBottomOf="@+id/publishedOnLabelView"
+            tools:text="31-12-1999" />
 
         <TextView
-            android:id="@+id/section_label_view"
+            android:id="@+id/sectionLabelView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="11dp"
@@ -104,13 +101,13 @@
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/section_view"
+            card_view:layout_constraintBottom_toTopOf="@+id/sectionView"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/published_on_label_view"
-            card_view:layout_constraintTop_toBottomOf="@+id/trail_text_view"/>
+            card_view:layout_constraintStart_toEndOf="@+id/publishedOnLabelView"
+            card_view:layout_constraintTop_toBottomOf="@+id/trailTextView" />
 
         <TextView
-            android:id="@+id/section_view"
+            android:id="@+id/sectionView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="11dp"
@@ -118,10 +115,9 @@
             android:textSize="13sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/published_on_view"
-            card_view:layout_constraintTop_toBottomOf="@+id/section_label_view"
-            tools:text="Really long section description so that we can test long line wrapping."/>
-
+            card_view:layout_constraintStart_toEndOf="@+id/publishedOnView"
+            card_view:layout_constraintTop_toBottomOf="@+id/sectionLabelView"
+            tools:text="Really long section description so that we can test long line wrapping." />
 
     </android.support.constraint.ConstraintLayout>
 
