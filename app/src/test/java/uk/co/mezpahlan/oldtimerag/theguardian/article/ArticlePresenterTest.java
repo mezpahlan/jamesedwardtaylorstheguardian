@@ -16,15 +16,15 @@ import static org.mockito.Mockito.verify;
 public class ArticlePresenterTest {
 
     @Mock
-    private ArticleMvp.View view;
+    private Article.View view;
 
     @Mock
-    private ArticleMvp.ModelInteractor modelInteractor;
+    private Article.ModelInteractor modelInteractor;
 
     @Test
     public void presenter_load_id() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
         String id = "test";
 
         // When
@@ -38,7 +38,7 @@ public class ArticlePresenterTest {
     @Test
     public void presenter_onLoadSuccess_articleHtml() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
         String articleHtml = "test";
         String webpageHtml = "<!DOCTYPE html> \n" +
                 "<html>\n" +
@@ -63,7 +63,7 @@ public class ArticlePresenterTest {
     @Test
     public void presenter_onLoadError() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
 
         // When
         presenter.onLoadError();
@@ -75,7 +75,7 @@ public class ArticlePresenterTest {
     @Test
     public void presenter_onDestroy_configurationChanging() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
 
         // When
         presenter.onDestroy(true);
@@ -87,7 +87,7 @@ public class ArticlePresenterTest {
     @Test
     public void presenter_onDestroy_configurationNotChanging() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
 
         // When
         presenter.onDestroy(false);
@@ -99,7 +99,7 @@ public class ArticlePresenterTest {
     @Test
     public void presenter_onConfigurationChanged_nonNullId() throws Exception {
         // Given
-        ArticleMvp.Presenter presenter = new ArticlePresenter(view, modelInteractor);
+        Article.Presenter presenter = new ArticlePresenter(view, modelInteractor);
         String id = "test";
 
 

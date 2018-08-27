@@ -1,4 +1,4 @@
-package uk.co.mezpahlan.oldtimerag.theguardian.feed
+package uk.co.mezpahlan.oldtimerag.theguardian
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -10,23 +10,25 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import uk.co.mezpahlan.oldtimerag.R
+import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedFragment
+import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedType
+import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
 
 /**
  * Main UI Controller for the application.
  *
  * TODO: Move to top level package and use navigation components.
  */
-class FeedActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
-    private lateinit var feedViewModel: FeedViewModel
+    private lateinit var feedViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theguardian_feed)
 
-        feedViewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
+        feedViewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
 
         setupToolbar()
         setupTabNavigation()
@@ -79,11 +81,7 @@ class FeedActivity : AppCompatActivity() {
         // If we find it then we assume we are in a two-pane layout with "Master-Detail".
         // If we don't then we assume we are in a single-pane mode with "Master" and "Detail" in different activities.
         val detailFrameView = findViewById<View>(R.id.articleFrameView)
-        if (detailFrameView != null) {
-            feedViewModel.isTwoPane = true
-        } else {
-            feedViewModel.isTwoPane = true
-        }
+        feedViewModel.isTwoPane = detailFrameView != null
     }
 
     private fun initFragment(feedFragment: Fragment) {

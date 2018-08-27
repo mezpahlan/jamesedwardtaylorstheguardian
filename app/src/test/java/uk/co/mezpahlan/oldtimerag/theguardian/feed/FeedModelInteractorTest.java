@@ -7,10 +7,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import retrofit2.Call;
-import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
-import uk.co.mezpahlan.oldtimerag.data.model.search.Response;
-import uk.co.mezpahlan.oldtimerag.data.model.search.Result;
-import uk.co.mezpahlan.oldtimerag.data.model.search.Search;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.network.TheGuardianOpenPlatformClient;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.search.Response;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.search.Result;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.search.Search;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNull;
@@ -26,10 +26,10 @@ import static org.mockito.Mockito.verify;
 public class FeedModelInteractorTest {
 
     @Mock
-    private FeedMvp.Presenter itemPresenter;
+    private Feed.Presenter itemPresenter;
 
     @Mock
-    private GuardianOpenPlatformClient client;
+    private TheGuardianOpenPlatformClient client;
 
     @Mock
     private Call<Search> call;
@@ -46,7 +46,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_fetch_nullQueryType() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
+        Feed.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
         given(client.search(null)).willReturn(call);
 
         // When
@@ -59,7 +59,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_fetch_nonNullQueryType() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
+        Feed.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
         String searchQuery = "test";
         given(client.search(searchQuery)).willReturn(call);
 
@@ -73,7 +73,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_onFetched_searchResult() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
+        Feed.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
         given(search.getResponse()).willReturn(response);
         given(response.getResults()).willReturn(results);
 
@@ -87,7 +87,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_fetchCached_nullQueryType() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = spy(new FeedModelInteractor(itemPresenter, client));
+        Feed.ModelInteractor modelInteractor = spy(new FeedModelInteractor(itemPresenter, client));
         willDoNothing().given(modelInteractor).fetch((String) isNull());
 
         // When
@@ -100,7 +100,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_fetchCached_nonNullQueryType() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = spy(new FeedModelInteractor(itemPresenter, client));
+        Feed.ModelInteractor modelInteractor = spy(new FeedModelInteractor(itemPresenter, client));
         willDoNothing().given(modelInteractor).fetch(anyString());
         String queryType = "test";
 
@@ -114,7 +114,7 @@ public class FeedModelInteractorTest {
     @Test
     public void modelInteractor_onError() throws Exception {
         // Given
-        FeedMvp.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
+        Feed.ModelInteractor modelInteractor = new FeedModelInteractor(itemPresenter, client);
 
         // When
         modelInteractor.onError();

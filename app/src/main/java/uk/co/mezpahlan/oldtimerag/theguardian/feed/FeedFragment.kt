@@ -1,71 +1,81 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_theguardian_feed.*
 import uk.co.mezpahlan.oldtimerag.R
-import uk.co.mezpahlan.oldtimerag.data.model.search.Result
+import uk.co.mezpahlan.oldtimerag.base.LceType
+import uk.co.mezpahlan.oldtimerag.base.LceView
 import uk.co.mezpahlan.oldtimerag.theguardian.article.ArticleFragment
+import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
 
 /**
  * UI Controller for TheGuardian.Feed.
  */
-class FeedFragment : Fragment(), FeedMvp.View {
-
-    private lateinit var listAdapter: FeedRecyclerViewAdapter
-    private lateinit var presenter: FeedMvp.Presenter
+class FeedFragment : Fragment(), LceView {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var viewModel: FeedViewModel
+    private lateinit var viewModel: SharedViewModel
 
-    /**
-     * Listener for clicks on items in the RecyclerView.
-     */
-    private val resultClickListener = object : ResultClickListener {
-        override fun onResultClick(result: Result) {
-            presenter.onSelectResult(result)
-        }
-    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProviders.of(requireActivity()).get(FeedViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val root = inflater.inflate(R.layout.fragment_theguardian_feed, container, false)
-        val recyclerView = root.findViewById<View>(R.id.recyclerView) as RecyclerView
+        return inflater.inflate(R.layout.fragment_theguardian_feed, container, false)
+    }
 
-        listAdapter = FeedRecyclerViewAdapter()
-        listAdapter.setClickListener(resultClickListener)
-        recyclerView.adapter = listAdapter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val adapter = FeedItemAdapter {
+            viewModel.selected.value = it.id
+            navigateToArticle()
+        }
+
+        recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Pull-to-refresh
-        swipeRefreshLayout = root.findViewById<View>(R.id.contentView) as SwipeRefreshLayout
         swipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(requireContext(), R.color.colorAccent),
                 ContextCompat.getColor(requireContext(), R.color.colorPrimary),
                 ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
         swipeRefreshLayout.setOnRefreshListener {
-
-            presenter.load(viewModel.feedType.name)
-
+            viewModel.loadFeed(viewModel.feedType)
         }
 
-        return root
+        subscribeUi(adapter)
+    }
+
+    private fun subscribeUi(adapter: FeedItemAdapter) {
+        viewModel.lceType.observe(requireActivity(), Observer {
+            when (it) {
+                LceType.LOADING -> showLoading()
+                LceType.CONTENT -> showContent()
+                LceType.ERROR -> showError()
+                null -> showError()
+            }
+        })
+
+        viewModel.items.observe(requireActivity(), Observer {
+            if (it != null && it.isNotEmpty()) {
+                adapter.submitList(it)
+            }
+        })
+
     }
 
     override fun showLoading() {
@@ -87,13 +97,8 @@ class FeedFragment : Fragment(), FeedMvp.View {
         contentView.visibility = View.GONE
     }
 
-    override fun updateContent(viewType: List<Result>) {
-        listAdapter.updateResults(viewType)
-        listAdapter.notifyDataSetChanged()
-    }
-
-    override fun showGuardianArticle(id: String, title: String) {
-        val articleFragment = ArticleFragment.newInstance(id, title)
+    fun navigateToArticle() {
+        val articleFragment = ArticleFragment()
         when {
             viewModel.isTwoPane -> requireFragmentManager()
                     .beginTransaction()
@@ -104,15 +109,5 @@ class FeedFragment : Fragment(), FeedMvp.View {
                     .replace(R.id.feedFrameView, articleFragment)
                     .commit()
         }
-    }
-
-    override fun onDestroy() {
-        val isConfigChanging = requireActivity().isChangingConfigurations
-        presenter.onDestroy(isConfigChanging)
-        super.onDestroy()
-    }
-
-    interface ResultClickListener {
-        fun onResultClick(result: Result)
     }
 }

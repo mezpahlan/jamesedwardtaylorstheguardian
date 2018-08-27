@@ -8,7 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.mezpahlan.oldtimerag.data.model.search.Result;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.search.Result;
 
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -21,14 +21,14 @@ import static org.mockito.Mockito.verify;
 public class FeedPresenterTest {
 
     @Mock
-    private FeedMvp.View view;
+    private Feed.View view;
     @Mock
-    private FeedMvp.ModelInteractor modelInteractor;
+    private Feed.ModelInteractor modelInteractor;
 
     @Test
-    public void presenter_load() throws Exception {
+    public void presenter_load() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
 
         // When
         presenter.load();
@@ -39,9 +39,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_load_nonNullQueryType() throws Exception {
+    public void presenter_load_nonNullQueryType() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
         String queryType = "test";
 
         // When
@@ -53,9 +53,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onLoadSuccess_emptyResultList() throws Exception {
+    public void presenter_onLoadSuccess_emptyResultList() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
         List<Result> resultList = new ArrayList<>(0);
 
         // When
@@ -67,9 +67,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onLoadError() throws Exception {
+    public void presenter_onLoadError() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
 
         // When
         presenter.onLoadError();
@@ -79,9 +79,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onDestroy_configurationChanging() throws Exception {
+    public void presenter_onDestroy_configurationChanging() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
 
         // When
         presenter.onDestroy(true);
@@ -91,9 +91,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onDestroy_configurationNotChanging() throws Exception {
+    public void presenter_onDestroy_configurationNotChanging() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
 
         // When
         presenter.onDestroy(false);
@@ -103,9 +103,9 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onConfigurationChanged_nonNullQueryType() throws Exception {
+    public void presenter_onConfigurationChanged_nonNullQueryType() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
         String queryType = "test";
 
 
@@ -118,16 +118,16 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void presenter_onSelectResult_nonNullResult() throws Exception {
+    public void presenter_onSelectResult_nonNullResult() {
         // Given
-        FeedMvp.Presenter presenter = new FeedPresenter(view, modelInteractor);
+        Feed.Presenter presenter = new FeedPresenter(view, modelInteractor);
         Result result = new Result();
 
         // When
-        presenter.onSelectResult(result);
+        presenter.onSelectItem(result);
 
         // Then
-        verify(view).showGuardianArticle(result.getId(), result.getWebTitle());
+        verify(view).showItem(result.getId(), result.getWebTitle());
     }
 
 }

@@ -7,11 +7,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import retrofit2.Call;
-import uk.co.mezpahlan.oldtimerag.data.GuardianOpenPlatformClient;
-import uk.co.mezpahlan.oldtimerag.data.model.singleitem.Content;
-import uk.co.mezpahlan.oldtimerag.data.model.singleitem.Fields;
-import uk.co.mezpahlan.oldtimerag.data.model.singleitem.Response;
-import uk.co.mezpahlan.oldtimerag.data.model.singleitem.SingleItem;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.network.TheGuardianOpenPlatformClient;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.singleitem.Content;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.singleitem.Fields;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.singleitem.Response;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.models.singleitem.SingleItem;
+import uk.co.mezpahlan.oldtimerag.theguardian.data.TheGuardianRepository;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNull;
@@ -27,10 +28,10 @@ import static org.mockito.Mockito.verify;
 public class ArticleModelInteractorTest {
 
     @Mock
-    private ArticleMvp.Presenter presenter;
+    private Article.Presenter presenter;
 
     @Mock
-    private GuardianOpenPlatformClient client;
+    private TheGuardianOpenPlatformClient client;
 
     @Mock
     private Call<SingleItem> call;
@@ -50,7 +51,7 @@ public class ArticleModelInteractorTest {
     @Test
     public void modelInteractor_fetch_nonNullId() throws Exception {
         // Given
-        ArticleMvp.ModelInteractor modelInteractor = new ArticleModelInteractor(presenter, client);
+        Article.ModelInteractor modelInteractor = new TheGuardianRepository(presenter, client);
         String id = "test";
         given(client.singleItem(id)).willReturn(call);
 
@@ -64,7 +65,7 @@ public class ArticleModelInteractorTest {
     @Test
     public void modelInteractor_onFetched_singleItem() throws Exception {
         // Given
-        ArticleMvp.ModelInteractor modelInteractor = new ArticleModelInteractor(presenter, client);
+        Article.ModelInteractor modelInteractor = new TheGuardianRepository(presenter, client);
         given(singleItem.getResponse()).willReturn(response);
         given(response.getContent()).willReturn(content);
         given(content.getFields()).willReturn(fields);
@@ -80,7 +81,7 @@ public class ArticleModelInteractorTest {
     @Test
     public void modelInteractor_fetchCached_nullId() throws Exception {
         // Given
-        ArticleMvp.ModelInteractor modelInteractor = spy(new ArticleModelInteractor(presenter, client));
+        Article.ModelInteractor modelInteractor = spy(new TheGuardianRepository(presenter, client));
         willDoNothing().given(modelInteractor).fetch((String) isNull());
 
         // When
@@ -93,7 +94,7 @@ public class ArticleModelInteractorTest {
     @Test
     public void modelInteractor_fetchCached_nonNullId() throws Exception {
         // Given
-        ArticleMvp.ModelInteractor modelInteractor = spy(new ArticleModelInteractor(presenter, client));
+        Article.ModelInteractor modelInteractor = spy(new TheGuardianRepository(presenter, client));
         willDoNothing().given(modelInteractor).fetch(anyString());
         String id = "test";
 
@@ -107,7 +108,7 @@ public class ArticleModelInteractorTest {
     @Test
     public void modelInteractor_onError() throws Exception {
         // Given
-        ArticleMvp.ModelInteractor modelInteractor = new ArticleModelInteractor(presenter, client);
+        Article.ModelInteractor modelInteractor = new TheGuardianRepository(presenter, client);
 
         // When
         modelInteractor.onError();
