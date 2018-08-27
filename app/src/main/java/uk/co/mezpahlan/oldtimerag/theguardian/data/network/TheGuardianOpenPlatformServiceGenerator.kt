@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import uk.co.mezpahlan.oldtimerag.base.Constants
+import uk.co.mezpahlan.oldtimerag.base.GUARDIAN_KEY
 
 /**
  * Retrofit Service Generator for The Guardian Open Platform.
@@ -18,14 +18,14 @@ object TheGuardianOpenPlatformServiceGenerator {
     private const val QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM = "body"
     private const val QUERY_PARAM_VALUE_PAGE_SIZE = "50"
 
-    private val httpSearchClient = OkHttpClient.Builder().addInterceptor { chain ->
+    private val searchClient = OkHttpClient.Builder().addInterceptor { chain ->
         val original = chain.request()
         val originalHttpUrl = original.url()
 
         val url = originalHttpUrl.newBuilder()
                 .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS_SEARCH)
                 .addQueryParameter(QUERY_PARAM_KEY_PAGE_SIZE, QUERY_PARAM_VALUE_PAGE_SIZE)
-                .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
+                .addQueryParameter(QUERY_PARAM_KEY_API_KEY, GUARDIAN_KEY)
                 .build()
 
         // Request customization: add request headers
@@ -36,13 +36,13 @@ object TheGuardianOpenPlatformServiceGenerator {
         chain.proceed(request)
     }
 
-    private val httpSingleItemClient = OkHttpClient.Builder().addInterceptor { chain ->
+    private val articleClient = OkHttpClient.Builder().addInterceptor { chain ->
         val original = chain.request()
         val originalHttpUrl = original.url()
 
         val url = originalHttpUrl.newBuilder()
                 .addQueryParameter(QUERY_PARAM_KEY_SHOW_FIELDS, QUERY_PARAM_VALUE_SHOW_FIELDS_SINGLE_ITEM)
-                .addQueryParameter(QUERY_PARAM_KEY_API_KEY, Constants.GUARDIAN_KEY)
+                .addQueryParameter(QUERY_PARAM_KEY_API_KEY, GUARDIAN_KEY)
                 .build()
 
         // Request customization: add request headers
@@ -58,13 +58,13 @@ object TheGuardianOpenPlatformServiceGenerator {
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 
-    fun <S> createSearchService(serviceClass: Class<S>): S {
-        val retrofit = builder.client(httpSearchClient.build()).build()
-        return retrofit.create(serviceClass)
+    fun createFeedService(): TheGuardianOpenPlatformClient {
+        val retrofit = builder.client(searchClient.build()).build()
+        return retrofit.create(TheGuardianOpenPlatformClient::class.java)
     }
 
-    fun <S> createSingleItemService(serviceClass: Class<S>): S {
-        val retrofit = builder.client(httpSingleItemClient.build()).build()
-        return retrofit.create(serviceClass)
+    fun createArticleService(): TheGuardianOpenPlatformClient {
+        val retrofit = builder.client(articleClient.build()).build()
+        return retrofit.create(TheGuardianOpenPlatformClient::class.java)
     }
 }
