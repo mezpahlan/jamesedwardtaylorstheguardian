@@ -1,6 +1,5 @@
 package uk.co.mezpahlan.oldtimerag.theguardian
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -8,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import org.koin.android.viewmodel.ext.android.viewModel
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedFragment
@@ -21,14 +21,12 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
-    private lateinit var viewModel: SharedViewModel
+    private val viewModel: SharedViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theguardian_feed)
-
-        viewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
 
         setupToolbar()
         setupTabNavigation()

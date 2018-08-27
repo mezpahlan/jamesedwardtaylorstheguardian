@@ -1,7 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -11,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_theguardian_feed.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.base.LceView
@@ -22,13 +22,7 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
  */
 class FeedFragment : Fragment(), LceView {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var viewModel: SharedViewModel
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
-    }
+    private val viewModel: SharedViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
