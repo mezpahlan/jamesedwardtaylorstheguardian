@@ -21,14 +21,14 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
-    private lateinit var feedViewModel: SharedViewModel
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theguardian_feed)
 
-        feedViewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
 
         setupToolbar()
         setupTabNavigation()
@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
-                    0 -> feedViewModel.feedType = FeedType.ALL
-                    1 -> feedViewModel.feedType = FeedType.ARTICLE
-                    2 -> feedViewModel.feedType = FeedType.LIVE_BLOG
+                    0 -> viewModel.feedType = FeedType.ALL
+                    1 -> viewModel.feedType = FeedType.ARTICLE
+                    2 -> viewModel.feedType = FeedType.LIVE_BLOG
                 }
 
                 initFragment(FeedFragment())
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         // If we find it then we assume we are in a two-pane layout with "Master-Detail".
         // If we don't then we assume we are in a single-pane mode with "Master" and "Detail" in different activities.
         val detailFrameView = findViewById<View>(R.id.articleFrameView)
-        feedViewModel.isTwoPane = detailFrameView != null
+        viewModel.isTwoPane = detailFrameView != null
     }
 
     private fun initFragment(feedFragment: Fragment) {
