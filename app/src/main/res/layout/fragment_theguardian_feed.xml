@@ -10,7 +10,7 @@
         layout="@layout/error_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/contentView"
+        app:layout_constraintBottom_toBottomOf="@+id/swipeRefreshView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +23,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/contentView" />
+        app:layout_constraintTop_toTopOf="@+id/swipeRefreshView" />
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/contentView"
+        android:id="@+id/swipeRefreshView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
