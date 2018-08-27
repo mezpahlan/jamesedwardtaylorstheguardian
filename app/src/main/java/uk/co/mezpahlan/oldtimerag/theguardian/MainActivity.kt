@@ -17,7 +17,7 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
 /**
  * Main UI Controller for the application.
  *
- * TODO: Move to top level package and use navigation components.
+ * TODO: Use navigation components.
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
