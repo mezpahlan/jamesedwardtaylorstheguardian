@@ -4,8 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import uk.co.mezpahlan.oldtimerag.base.LceType
-import uk.co.mezpahlan.oldtimerag.theguardian.data.TheGuardianRepository
 import uk.co.mezpahlan.oldtimerag.theguardian.article.Article
+import uk.co.mezpahlan.oldtimerag.theguardian.data.TheGuardianRepository
 import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedItem
 import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedType
 
