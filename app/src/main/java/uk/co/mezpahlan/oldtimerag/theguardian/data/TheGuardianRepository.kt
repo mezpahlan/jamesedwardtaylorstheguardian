@@ -18,10 +18,10 @@ import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedType
  *
  * TODO: Use Repository pattern to return cached result from here via Room
  */
-class TheGuardianRepository(private val client: TheGuardianOpenPlatformClient) {
+class TheGuardianRepository(private val feedService: TheGuardianOpenPlatformClient, private val articleService: TheGuardianOpenPlatformClient) {
 
     fun fetchFeed(feedType: FeedType): Single<List<FeedItem>> {
-        return client.search(feedType.name)
+        return feedService.search(feedType.name)
                 .subscribeOn(Schedulers.io())
                 .filter { t -> t.response.results.isNotEmpty() }
                 .map { t -> t.response.results }
@@ -32,7 +32,7 @@ class TheGuardianRepository(private val client: TheGuardianOpenPlatformClient) {
     }
 
     fun fetchArticle(id: String): Single<Article> {
-        return client.singleItem(id)
+        return articleService.singleItem(id)
                 .subscribeOn(Schedulers.io())
                 .map { t -> t.response.content }
                 .map { t -> Article(t.id, t.webTitle, t.fields.body.wrapArticleHtml()) }
