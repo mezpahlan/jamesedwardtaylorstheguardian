@@ -9,6 +9,7 @@ buildscript {
         targetSdkVersion = 27
 
         // App dependencies
+        koinVersion = '1.0.0-beta-7'
         constraintLayoutVersion = '1.1.2'
         espressoVersion = '3.0.2'
         gradleVersion = '3.1.4'
