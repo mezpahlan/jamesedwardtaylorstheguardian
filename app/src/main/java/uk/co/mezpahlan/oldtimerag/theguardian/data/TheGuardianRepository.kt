@@ -21,11 +21,17 @@ import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedType
 class TheGuardianRepository(private val feedService: TheGuardianOpenPlatformClient, private val articleService: TheGuardianOpenPlatformClient) {
 
     fun fetchFeed(feedType: FeedType): Single<List<FeedItem>> {
-        return feedService.search(feedType.name)
+        return feedService.search()
                 .subscribeOn(Schedulers.io())
-                .filter { t -> t.response.results.isNotEmpty() }
                 .map { t -> t.response.results }
+                .filter { t -> t.isNotEmpty() }
                 .flattenAsFlowable { t -> t }
+                .filter { t ->
+                    when (feedType.name) {
+                        FeedType.ALL.name -> true
+                        else -> t.type == feedType.name
+                    }
+                }
                 .map { t -> FeedItem(t.id, t.fields.thumbnail, t.fields.headline.stripHtml(), t.fields.trailText.stripHtml(), t.webPublicationDate.convertDateFormat(), t.sectionName) }
                 .toList()
                 .observeOn(AndroidSchedulers.mainThread())

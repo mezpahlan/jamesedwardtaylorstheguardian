@@ -12,7 +12,7 @@ import uk.co.mezpahlan.oldtimerag.theguardian.data.models.singleitem.SingleItem
  */
 interface TheGuardianOpenPlatformClient {
     @GET("search")
-    fun search(@Query("type") type: String): Single<Search>
+    fun search(): Single<Search>
 
     @GET
     fun singleItem(@Url id: String): Single<SingleItem>
