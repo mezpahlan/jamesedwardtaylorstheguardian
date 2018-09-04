@@ -24,7 +24,7 @@ buildscript {
         moshiVersion = '1.6.0'
         rxJavaVersion = '2.1.16'
         rxAndroidVersion = '2.0.2'
-        picassoVersion = '2.5.2'
+        picassoVersion = '2.71828'
         calligraphyVersion = '2.2.0'
     }
 
