@@ -5,7 +5,12 @@ import com.squareup.picasso.Picasso
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.GrayscaleTransformation
 
-fun ImageView.loadUrl(url: String) {
+fun ImageView.loadUrl(path: String) {
+    val url = when {
+        path.isNotBlank() -> path
+        else -> null
+    }
+
     Picasso.with(context)
             .load(url)
             .fit()
