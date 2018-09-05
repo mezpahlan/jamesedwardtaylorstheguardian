@@ -19,10 +19,10 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
     private val compositeDisposable = CompositeDisposable()
 
     init {
-        loadFeed(feedType)
+        loadFeed()
     }
 
-    fun loadFeed(feedType: FeedType) {
+    fun loadFeed() {
         lceType.value = LceType.LOADING
         val disposable = repository.fetchFeed(feedType)
                 .doAfterSuccess { onLoadSuccess() }
@@ -31,7 +31,7 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
         compositeDisposable.add(disposable)
     }
 
-    fun loadArticle(id: String) {
+    fun loadArticle(id: String) { // TODO: Remove param and use field value?? selected?
         lceType.value = LceType.LOADING
         val disposable = repository.fetchArticle(id)
                 .doAfterSuccess { onLoadSuccess() }
