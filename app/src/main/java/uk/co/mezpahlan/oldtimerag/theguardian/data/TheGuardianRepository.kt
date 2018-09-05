@@ -29,7 +29,7 @@ class TheGuardianRepository(private val feedService: TheGuardianOpenPlatformClie
                 .filter { t ->
                     when (feedType.name) {
                         FeedType.ALL.name -> true
-                        else -> t.type == feedType.name
+                        else -> t.type == feedType.value
                     }
                 }
                 .map { t -> FeedItem(t.id, t.fields.thumbnail, t.fields.headline.stripHtml(), t.fields.trailText.stripHtml(), t.webPublicationDate.convertDateFormat(), t.sectionName) }
