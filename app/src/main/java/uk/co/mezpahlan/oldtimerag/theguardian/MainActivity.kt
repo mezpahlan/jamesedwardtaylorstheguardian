@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                     2 -> viewModel.feedType = FeedType.LIVE_BLOG
                 }
 
-                initFragment(FeedFragment())
+                viewModel.loadFeed()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -72,6 +72,8 @@ class MainActivity : AppCompatActivity() {
                 // Do nothing. Swipe to refresh can refresh
             }
         })
+
+        initFragment(FeedFragment())
     }
 
     private fun determinePaneLayout() {
