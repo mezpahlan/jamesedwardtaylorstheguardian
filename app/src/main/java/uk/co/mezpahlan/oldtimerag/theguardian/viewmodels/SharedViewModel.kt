@@ -18,10 +18,6 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
     var lceType = MutableLiveData<LceType>()
     private val compositeDisposable = CompositeDisposable()
 
-    init {
-        loadFeed()
-    }
-
     fun loadFeed() {
         lceType.value = LceType.LOADING
         val disposable = repository.fetchFeed(feedType)
@@ -31,13 +27,16 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
         compositeDisposable.add(disposable)
     }
 
-    fun loadArticle(id: String) { // TODO: Remove param and use field value?? selected?
-        lceType.value = LceType.LOADING
-        val disposable = repository.fetchArticle(id)
-                .doAfterSuccess { onLoadSuccess() }
-                .subscribe({ article.value = it }, { onLoadError() })
+    fun loadArticle() {
+        selected.value?.let { selectedArticle ->
+            lceType.value = LceType.LOADING
+            val disposable = repository.fetchArticle(selectedArticle)
+                    .doAfterSuccess { onLoadSuccess() }
+                    .subscribe({ article.value = it }, { onLoadError() })
 
-        compositeDisposable.add(disposable)
+            compositeDisposable.add(disposable)
+        }
+
     }
 
     private fun onLoadSuccess() {

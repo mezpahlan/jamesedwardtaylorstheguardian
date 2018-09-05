@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_theguardian_article.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.base.LceView
@@ -17,7 +17,7 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
  * UI Controller for TheGuardian.Article.
  */
 class ArticleFragment : Fragment(), LceView {
-    private val viewModel: SharedViewModel by viewModel()
+    private val viewModel: SharedViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,6 +35,8 @@ class ArticleFragment : Fragment(), LceView {
         webView.webViewClient = ArticleWebViewClient(this)
 
         subscribeUi()
+
+        viewModel.loadArticle()
     }
 
     private fun subscribeUi() {
@@ -56,20 +58,20 @@ class ArticleFragment : Fragment(), LceView {
     }
 
     override fun showLoading() {
-        loadingView.visibility = View.VISIBLE
-        webView.visibility = View.INVISIBLE
-        errorView.visibility = View.GONE
+        loadingView?.visibility = View.VISIBLE
+        webView?.visibility = View.INVISIBLE
+        errorView?.visibility = View.GONE
     }
 
     override fun showContent() {
-        webView.visibility = View.VISIBLE
-        loadingView.visibility = View.GONE
-        errorView.visibility = View.GONE
+        webView?.visibility = View.VISIBLE
+        loadingView?.visibility = View.GONE
+        errorView?.visibility = View.GONE
     }
 
     override fun showError() {
-        errorView.visibility = View.VISIBLE
-        webView.visibility = View.GONE
-        loadingView.visibility = View.GONE
+        errorView?.visibility = View.VISIBLE
+        webView?.visibility = View.GONE
+        loadingView?.visibility = View.GONE
     }
 }

@@ -51,6 +51,8 @@ class FeedFragment : Fragment(), LceView {
         }
 
         subscribeUi(adapter)
+
+        viewModel.loadFeed()
     }
 
     private fun subscribeUi(adapter: FeedItemAdapter) {
@@ -72,25 +74,25 @@ class FeedFragment : Fragment(), LceView {
     }
 
     override fun showLoading() {
-        loadingView.visibility = View.VISIBLE
-        swipeRefreshView.visibility = View.INVISIBLE
-        errorView.visibility = View.GONE
+        loadingView?.visibility = View.VISIBLE
+        swipeRefreshView?.visibility = View.INVISIBLE
+        errorView?.visibility = View.GONE
     }
 
     override fun showContent() {
-        swipeRefreshView.visibility = View.VISIBLE
-        loadingView.visibility = View.GONE
-        errorView.visibility = View.GONE
-        swipeRefreshView.isRefreshing = false
+        swipeRefreshView?.visibility = View.VISIBLE
+        loadingView?.visibility = View.GONE
+        errorView?.visibility = View.GONE
+        swipeRefreshView?.isRefreshing = false
     }
 
     override fun showError() {
-        errorView.visibility = View.VISIBLE
-        loadingView.visibility = View.GONE
-        swipeRefreshView.visibility = View.GONE
+        errorView?.visibility = View.VISIBLE
+        loadingView?.visibility = View.GONE
+        swipeRefreshView?.visibility = View.GONE
     }
 
-    fun navigateToArticle() {
+    private fun navigateToArticle() {
         val articleFragment = ArticleFragment()
         when {
             viewModel.isTwoPane -> requireFragmentManager()
