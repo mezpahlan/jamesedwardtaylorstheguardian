@@ -75,6 +75,7 @@ dependencies {
     // Test dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.koin:koin-test:$rootProject.koinVersion"
 
     // Instrumentation test dependencies
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
