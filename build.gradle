@@ -22,10 +22,10 @@ buildscript {
         lifecycleVersion = '1.1.1'
         retrofitVersion = '2.4.0'
         moshiVersion = '1.6.0'
-        rxJavaVersion = '2.1.16'
-        rxAndroidVersion = '2.0.2'
+        rxJavaVersion = '2.2.1'
+        rxAndroidVersion = '2.1.0'
         picassoVersion = '2.5.2'
-        calligraphyVersion = '2.2.0'
+        calligraphyVersion = '2.3.0'
     }
 
     dependencies {
