@@ -51,8 +51,7 @@ class ArticleFragment : Fragment(), LceView {
 
         viewModel.article.observe(requireActivity(), Observer { item ->
             item?.let {
-                requireActivity().title = it.title
-                webView.loadDataWithBaseURL("file:///android_asset/", it.pageData, "text/html", "UTF-8", null)
+                webView?.loadDataWithBaseURL("file:///android_asset/", it.pageData, "text/html", "UTF-8", null)
             }
         })
     }

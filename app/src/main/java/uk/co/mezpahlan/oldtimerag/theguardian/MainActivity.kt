@@ -1,5 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -7,7 +8,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
-import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import uk.co.mezpahlan.oldtimerag.R
@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setupTabNavigation()
         determinePaneLayout()
+        subscribeUi()
+
+        initFragment(FeedFragment())
     }
 
     private fun setupToolbar() {
@@ -57,12 +60,10 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
-                    0 -> viewModel.feedType = FeedType.ALL
-                    1 -> viewModel.feedType = FeedType.ARTICLE
-                    2 -> viewModel.feedType = FeedType.LIVE_BLOG
+                    0 -> viewModel.feedType.value = FeedType.ALL
+                    1 -> viewModel.feedType.value = FeedType.ARTICLE
+                    2 -> viewModel.feedType.value = FeedType.LIVE_BLOG
                 }
-
-                viewModel.loadFeed()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -73,8 +74,6 @@ class MainActivity : AppCompatActivity() {
                 // Do nothing. Swipe to refresh can refresh
             }
         })
-
-        initFragment(FeedFragment())
     }
 
     private fun determinePaneLayout() {
@@ -83,6 +82,12 @@ class MainActivity : AppCompatActivity() {
         // If we don't then we assume we are in a single-pane mode with "Master" and "Detail" in different activities.
         val detailFrameView = findViewById<View>(R.id.articleFrameView)
         viewModel.isTwoPane = detailFrameView != null
+    }
+
+    private fun subscribeUi() {
+        viewModel.article.observe(this, Observer {
+            title = it?.title
+        })
     }
 
     private fun initFragment(feedFragment: Fragment) {
