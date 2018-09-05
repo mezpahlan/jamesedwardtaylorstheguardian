@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_theguardian_feed.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.base.LceView
@@ -20,7 +20,7 @@ import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
  * UI Controller for TheGuardian.Feed.
  */
 class FeedFragment : Fragment(), LceView {
-    private val viewModel: SharedViewModel by viewModel()
+    private val viewModel: SharedViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -47,7 +47,7 @@ class FeedFragment : Fragment(), LceView {
                 ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
 
         swipeRefreshView.setOnRefreshListener {
-            viewModel.loadFeed(viewModel.feedType)
+            viewModel.loadFeed()
         }
 
         subscribeUi(adapter)
