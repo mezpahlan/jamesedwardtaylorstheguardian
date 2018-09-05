@@ -32,7 +32,7 @@ class FeedFragment : Fragment(), LceView {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = FeedItemAdapter {
-            viewModel.selected.value = it.id
+            viewModel.articleId.value = it.id
             navigateToArticle()
         }
 

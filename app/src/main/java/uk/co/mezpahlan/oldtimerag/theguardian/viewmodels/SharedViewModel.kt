@@ -13,7 +13,7 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
     var feedType = FeedType.ALL
     var isTwoPane = false
     var items = MutableLiveData<List<FeedItem>>()
-    var selected = MutableLiveData<String?>()
+    var articleId = MutableLiveData<String>()
     var article = MutableLiveData<Article>()
     var lceType = MutableLiveData<LceType>()
     private val compositeDisposable = CompositeDisposable()
@@ -28,7 +28,7 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
     }
 
     fun loadArticle() {
-        selected.value?.let { selectedArticle ->
+        articleId.value?.let { selectedArticle ->
             lceType.value = LceType.LOADING
             val disposable = repository.fetchArticle(selectedArticle)
                     .doAfterSuccess { onLoadSuccess() }
