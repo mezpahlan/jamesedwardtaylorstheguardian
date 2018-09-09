@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         determinePaneLayout()
         subscribeUi()
 
-        initFragment(FeedFragment())
+        navigateToFeed()
     }
 
     private fun setupToolbar() {
@@ -64,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                     1 -> viewModel.feedType.value = FeedType.ARTICLE
                     2 -> viewModel.feedType.value = FeedType.LIVE_BLOG
                 }
+
+                navigateToFeed()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -90,11 +91,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun initFragment(feedFragment: Fragment) {
+    private fun navigateToFeed() {
         // Add the FeedFragment to the layout
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.feedFrameView, feedFragment)
+        transaction.replace(R.id.feedFrameView, FeedFragment())
         transaction.commit()
     }
 
