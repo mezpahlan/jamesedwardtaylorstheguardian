@@ -101,24 +101,4 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
-
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        // Save custom values into the bundle
-        savedInstanceState.putInt(STATE_SELECTED_TAB, tabLayout.selectedTabPosition)
-
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        // Always call the superclass so it can restore the view hierarchy
-        super.onRestoreInstanceState(savedInstanceState)
-
-        // Restore a previously selected Tab
-        tabLayout.getTabAt(savedInstanceState.getInt(STATE_SELECTED_TAB, 0))!!.select()
-    }
-
-    companion object {
-        private const val STATE_SELECTED_TAB = "STATE_SELECTED_TAB"
-    }
 }
