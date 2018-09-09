@@ -5,7 +5,6 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true">
 
@@ -14,14 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <android.support.constraint.Guideline
+            android:id="@+id/horizontalImageHeightGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintGuide_percent="0.6" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/verticalStartGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0.27" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/verticalCentreGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0.5" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/verticalEndGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0.67" />
+
         <ImageView
             android:id="@+id/thumbnailView"
             android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_marginBottom="100dp"
-            android:layout_marginTop="6dp"
+            android:layout_height="0dp"
             android:scaleType="centerCrop"
-            card_view:layout_constraintBottom_toTopOf="@+id/publishedOnLabelView"
+            card_view:layout_constraintBottom_toBottomOf="@id/horizontalImageHeightGuideline"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
@@ -31,11 +56,7 @@
             android:id="@+id/headlineView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="11dp"
-            android:layout_marginLeft="11dp"
-            android:layout_marginRight="11dp"
-            android:layout_marginStart="11dp"
+            android:layout_margin="8dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
@@ -43,18 +64,18 @@
             card_view:layout_constraintBottom_toTopOf="@+id/trailTextView"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/thumbnailView"
+            card_view:layout_constraintTop_toBottomOf="@+id/horizontalImageHeightGuideline"
             tools:text="Headline for the article" />
 
         <TextView
             android:id="@+id/trailTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="8dp"
             android:textSize="13sp"
             card_view:layout_constraintBottom_toTopOf="@+id/sectionLabelView"
-            card_view:layout_constraintEnd_toStartOf="@+id/sectionView"
-            card_view:layout_constraintStart_toStartOf="@+id/sectionView"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/headlineView"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae." />
 
@@ -62,62 +83,55 @@
             android:id="@+id/publishedOnLabelView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="94dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="94dp"
-            android:layout_marginStart="21dp"
+            android:layout_margin="8dp"
             android:text="@string/published_on_label"
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/publishedOnView"
-            card_view:layout_constraintEnd_toStartOf="@+id/sectionLabelView"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/thumbnailView" />
+            card_view:layout_constraintEnd_toEndOf="@+id/verticalStartGuideline"
+            card_view:layout_constraintStart_toStartOf="@+id/verticalStartGuideline"
+            card_view:layout_constraintTop_toBottomOf="@+id/trailTextView" />
 
         <TextView
             android:id="@+id/publishedOnView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="104dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="104dp"
-            android:layout_marginStart="21dp"
+            android:layout_marginBottom="8dp"
             android:textSize="13sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/sectionView"
-            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/publishedOnLabelView"
+            card_view:layout_constraintStart_toStartOf="@+id/publishedOnLabelView"
             card_view:layout_constraintTop_toBottomOf="@+id/publishedOnLabelView"
+            card_view:layout_constraintVertical_bias="0.0"
             tools:text="31-12-1999" />
 
         <TextView
             android:id="@+id/sectionLabelView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="11dp"
-            android:layout_marginRight="11dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/section_label"
             android:textAppearance="@style/Merriweather.Bold"
             android:textSize="13sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/sectionView"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/publishedOnLabelView"
+            card_view:layout_constraintEnd_toEndOf="@+id/verticalEndGuideline"
+            card_view:layout_constraintStart_toStartOf="@+id/verticalEndGuideline"
             card_view:layout_constraintTop_toBottomOf="@+id/trailTextView" />
 
         <TextView
             android:id="@+id/sectionView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="11dp"
-            android:layout_marginRight="11dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textSize="13sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/publishedOnView"
+            card_view:layout_constraintStart_toStartOf="@+id/sectionLabelView"
             card_view:layout_constraintTop_toBottomOf="@+id/sectionLabelView"
-            tools:text="Really long section description so that we can test long line wrapping." />
+            card_view:layout_constraintVertical_bias="0.0"
+            tools:text="Really long section description" />
 
     </android.support.constraint.ConstraintLayout>
 
