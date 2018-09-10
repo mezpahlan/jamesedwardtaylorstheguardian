@@ -24,8 +24,8 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
 
     fun loadFeed() {
         feedType.value?.let { feedType ->
-            lceType.value = LceType.LOADING
             val disposable = repository.fetchFeed(feedType)
+                    .doOnSubscribe { onLoading() }
                     .doAfterSuccess { onLoadSuccess() }
                     .subscribe({ items.value = it }, { onLoadError() })
 
@@ -35,14 +35,18 @@ class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel
 
     fun loadArticle() {
         articleId.value?.let { selectedArticle ->
-            lceType.value = LceType.LOADING
             val disposable = repository.fetchArticle(selectedArticle)
+                    .doOnSubscribe { onLoading() }
                     .doAfterSuccess { onLoadSuccess() }
                     .subscribe({ article.value = it }, { onLoadError() })
 
             compositeDisposable.add(disposable)
         }
 
+    }
+
+    private fun onLoading() {
+        lceType.value = LceType.LOADING
     }
 
     private fun onLoadSuccess() {
