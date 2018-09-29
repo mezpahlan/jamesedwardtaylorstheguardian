@@ -1,6 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.viewmodels
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule

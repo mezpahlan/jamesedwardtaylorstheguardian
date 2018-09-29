@@ -1,15 +1,15 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_theguardian_feed.*
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.base.LceView

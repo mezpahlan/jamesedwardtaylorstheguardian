@@ -1,6 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
-import android.support.v7.recyclerview.extensions.ListAdapter
+import androidx.recyclerview.widget.ListAdapter
 import android.view.ViewGroup
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.extensions.inflate

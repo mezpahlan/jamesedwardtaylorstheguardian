@@ -15,7 +15,7 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 5
         versionName "0.7.1"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
@@ -56,38 +56,44 @@ android {
 }
 
 dependencies {
-    // Implementation Dependencies
+    // Android X
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.androidXVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.androidXVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.androidXVersion"
+    implementation "androidx.cardview:cardview:$rootProject.androidXVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
+
+    // Architecture
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
-    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
-    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
-    kapt "android.arch.lifecycle:compiler:$lifecycleVersion"
     implementation "org.koin:koin-android:$rootProject.koinVersion"
-    implementation "org.koin:koin-android-scope:$rootProject.koinVersion"
-    implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
+    implementation "org.koin:koin-androidx-scope:$rootProject.koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$rootProject.koinVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+
+    // Network
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.squareup.moshi:moshi:$rootProject.moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$rootProject.moshiVersion"
+
+    // UI
+    implementation "com.google.android.material:material:$rootProject.androidXVersion"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
 
-    // Test dependencies
-    testImplementation "android.arch.core:core-testing:$lifecycleVersion"
+    // Test
+    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "org.koin:koin-test:$rootProject.koinVersion"
 
-    // Instrumentation test dependencies
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    // Instrumentation Test
+    androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
 }

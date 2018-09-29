@@ -1,6 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.list_item_rss_feed.view.*
 import uk.co.mezpahlan.oldtimerag.extensions.loadUrl

@@ -1,6 +1,6 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.di
 
-import org.koin.android.viewmodel.ext.koin.viewModel
+import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import uk.co.mezpahlan.oldtimerag.theguardian.data.TheGuardianRepository
 import uk.co.mezpahlan.oldtimerag.theguardian.data.network.TheGuardianOpenPlatformServiceGenerator

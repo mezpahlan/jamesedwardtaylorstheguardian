@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
@@ -8,33 +8,33 @@
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/horizontalImageHeightGuideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             card_view:layout_constraintGuide_percent="0.6" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/verticalStartGuideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             card_view:layout_constraintGuide_percent="0.27" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/verticalCentreGuideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             card_view:layout_constraintGuide_percent="0.5" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/verticalEndGuideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -133,6 +133,6 @@
             card_view:layout_constraintVertical_bias="0.0"
             tools:text="Really long section description" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

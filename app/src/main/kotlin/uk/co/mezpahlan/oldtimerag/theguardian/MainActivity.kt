@@ -1,13 +1,13 @@
 package uk.co.mezpahlan.oldtimerag.theguardian
 
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.View
-import org.koin.android.viewmodel.ext.android.viewModel
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import com.google.android.material.tabs.TabLayout
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedFragment

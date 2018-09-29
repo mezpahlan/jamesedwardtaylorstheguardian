@@ -1,7 +1,7 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.viewmodels
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.theguardian.article.Article
