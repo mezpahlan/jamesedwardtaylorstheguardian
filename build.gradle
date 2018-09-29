@@ -13,6 +13,7 @@ buildscript {
         androidXVersion = '1.0.0'
         constraintLayoutVersion = '2.0.0-alpha2'
         lifecycleVersion = '2.0.0'
+        navigationVersion = '1.0.0-alpha06'
 
         // Architecture
         kotlinVersion = '1.2.71'
@@ -40,6 +41,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 
