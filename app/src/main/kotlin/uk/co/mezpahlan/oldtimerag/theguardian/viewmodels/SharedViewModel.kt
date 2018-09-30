@@ -10,27 +10,20 @@ import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedItem
 import uk.co.mezpahlan.oldtimerag.theguardian.feed.FeedType
 
 class SharedViewModel(private val repository: TheGuardianRepository) : ViewModel() {
-    var isTwoPane = false
-    var feedType = MutableLiveData<FeedType>()
+    var feedType: FeedType = FeedType.ALL
     var items = MutableLiveData<List<FeedItem>>()
     var articleId = MutableLiveData<String>()
     var article = MutableLiveData<Article>()
     var lceType = MutableLiveData<LceType>()
     private val compositeDisposable = CompositeDisposable()
 
-    init {
-        feedType.value = FeedType.ALL
-    }
-
     fun loadFeed() {
-        feedType.value?.let { feedType ->
-            val disposable = repository.fetchFeed(feedType)
-                    .doOnSubscribe { onLoading() }
-                    .doAfterSuccess { onLoadSuccess() }
-                    .subscribe({ items.value = it }, { onLoadError() })
+        val disposable = repository.fetchFeed(feedType)
+                .doOnSubscribe { onLoading() }
+                .doAfterSuccess { onLoadSuccess() }
+                .subscribe({ items.value = it }, { onLoadError() })
 
-            compositeDisposable.add(disposable)
-        }
+        compositeDisposable.add(disposable)
     }
 
     fun loadArticle() {

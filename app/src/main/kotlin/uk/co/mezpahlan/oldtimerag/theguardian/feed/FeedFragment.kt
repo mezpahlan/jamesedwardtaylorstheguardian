@@ -1,26 +1,26 @@
 package uk.co.mezpahlan.oldtimerag.theguardian.feed
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_theguardian_feed.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import uk.co.mezpahlan.oldtimerag.R
 import uk.co.mezpahlan.oldtimerag.base.LceType
 import uk.co.mezpahlan.oldtimerag.base.LceView
-import uk.co.mezpahlan.oldtimerag.theguardian.article.ArticleFragment
 import uk.co.mezpahlan.oldtimerag.theguardian.viewmodels.SharedViewModel
 
 /**
  * UI Controller for TheGuardian.Feed.
  */
-class FeedFragment : Fragment(), LceView {
-    private val viewModel: SharedViewModel by sharedViewModel()
+abstract class FeedFragment : Fragment(), LceView {
+    protected val viewModel: SharedViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -33,7 +33,7 @@ class FeedFragment : Fragment(), LceView {
 
         val adapter = FeedItemAdapter {
             viewModel.articleId.value = it.id
-            navigateToArticle()
+            findNavController().navigate(R.id.articleFragment)
         }
 
         recyclerView.adapter = adapter
@@ -90,19 +90,5 @@ class FeedFragment : Fragment(), LceView {
         errorView?.visibility = View.VISIBLE
         loadingView?.visibility = View.GONE
         swipeRefreshView?.visibility = View.GONE
-    }
-
-    private fun navigateToArticle() {
-        val articleFragment = ArticleFragment()
-        when {
-            viewModel.isTwoPane -> requireFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.articleFrameView, articleFragment)
-                    .commit()
-            else -> requireFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.feedFrameView, articleFragment)
-                    .commit()
-        }
     }
 }

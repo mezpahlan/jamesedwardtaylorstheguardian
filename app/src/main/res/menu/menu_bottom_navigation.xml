@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/allFeedFragment"
+        android:enabled="true"
+        android:title="@string/text_all"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/articleFeedFragment"
+        android:enabled="true"
+        android:title="@string/text_articles"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/blogFeedFragment"
+        android:enabled="true"
+        android:title="@string/text_blog"
+        app:showAsAction="ifRoom" />
+</menu>
