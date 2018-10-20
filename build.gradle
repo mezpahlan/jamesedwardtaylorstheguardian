@@ -28,7 +28,6 @@ buildscript {
 
         // UI
         picassoVersion = '2.5.2'
-        calligraphyVersion = '2.3.0'
 
         // Test
         junitVersion = '4.12'

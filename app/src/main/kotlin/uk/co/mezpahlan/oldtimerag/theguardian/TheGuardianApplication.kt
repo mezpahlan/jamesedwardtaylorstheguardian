@@ -3,7 +3,6 @@ package uk.co.mezpahlan.oldtimerag.theguardian
 
 import android.app.Application
 import org.koin.android.ext.android.startKoin
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import uk.co.mezpahlan.oldtimerag.theguardian.di.appModules
 
 /**
@@ -15,10 +14,5 @@ class TheGuardianApplication : Application() {
         super.onCreate()
 
         startKoin(this, appModules)
-
-        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Merriweather-Regular.ttf")
-                .build()
-        )
     }
 }

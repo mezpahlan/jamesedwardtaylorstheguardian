@@ -86,7 +86,6 @@ dependencies {
     // UI
     implementation "com.google.android.material:material:$rootProject.androidXVersion"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
-    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
 
     // Test
     testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
