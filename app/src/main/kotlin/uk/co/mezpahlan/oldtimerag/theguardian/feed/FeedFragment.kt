@@ -42,9 +42,9 @@ abstract class FeedFragment : Fragment(), LceView {
 
         // Pull-to-refresh
         swipeRefreshView.setColorSchemeColors(
-                ContextCompat.getColor(requireContext(), R.color.colorAccent),
-                ContextCompat.getColor(requireContext(), R.color.colorPrimary),
-                ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
+                ContextCompat.getColor(requireContext(), R.color.primaryDarkColor),
+                ContextCompat.getColor(requireContext(), R.color.primaryColor),
+                ContextCompat.getColor(requireContext(), R.color.primaryDarkColor))
 
         swipeRefreshView.setOnRefreshListener {
             viewModel.loadFeed()
