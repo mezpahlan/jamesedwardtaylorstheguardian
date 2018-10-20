@@ -10,7 +10,7 @@ import uk.co.mezpahlan.oldtimerag.base.GUARDIAN_KEY
  * Retrofit Service Generator for The Guardian Open Platform.
  */
 object TheGuardianOpenPlatformServiceGenerator {
-    private const val API_BASE_URL = "http://content.guardianapis.com/"
+    private const val API_BASE_URL = "https://content.guardianapis.com/"
     private const val QUERY_PARAM_KEY_API_KEY = "api-key"
     private const val QUERY_PARAM_KEY_SHOW_FIELDS = "show-fields"
     private const val QUERY_PARAM_KEY_PAGE_SIZE = "page-size"
