@@ -11,7 +11,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import uk.co.mezpahlan.oldtimerag.R
 
 /**
- * Main UI Controller for the application. *
+ * Main UI Controller for the application.
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
