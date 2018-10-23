@@ -1,118 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontalImageHeightGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalStartGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalCentreGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalEndGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.67" />
 
         <ImageView
-            android:id="@+id/thumbnail_view"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:id="@+id/thumbnailView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/horizontalImageHeightGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/old_time_rag_no_text" />
 
         <TextView
-            android:id="@+id/headline_view"
-            android:layout_width="match_parent"
+            android:id="@+id/headlineView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textAppearance="@style/Merriweather.Bold"
-            android:textSize="13sp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/merriweather_bold"
             android:gravity="center_horizontal"
-            android:layout_below="@+id/thumbnail_view"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/trailTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalImageHeightGuideline"
             tools:text="Headline for the article" />
 
         <TextView
-            android:id="@+id/trail_text_view"
-            android:layout_width="match_parent"
+            android:id="@+id/trailTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:textSize="13sp"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/headline_view"
+            app:fontFamily="@font/merriweather_regular"
+            app:layout_constraintBottom_toTopOf="@+id/sectionLabelView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headlineView"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae." />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/publishedOnLabelView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/trail_text_view" >
+            android:layout_margin="8dp"
+            android:text="@string/published_on_label"
+            android:textSize="13sp"
+            app:fontFamily="@font/merriweather_bold"
+            app:layout_constraintEnd_toEndOf="@+id/verticalStartGuideline"
+            app:layout_constraintStart_toStartOf="@+id/verticalStartGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/trailTextView" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+        <TextView
+            android:id="@+id/publishedOnView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="13sp"
+            app:fontFamily="@font/merriweather_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/publishedOnLabelView"
+            app:layout_constraintStart_toStartOf="@+id/publishedOnLabelView"
+            app:layout_constraintTop_toBottomOf="@+id/publishedOnLabelView"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="31-12-1999" />
 
-                <TextView
-                    android:id="@+id/published_on_label_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/Merriweather.Bold"
-                    android:textSize="13sp"
-                    android:text="@string/published_on_label"/>
+        <TextView
+            android:id="@+id/sectionLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/section_label"
+            android:textSize="13sp"
+            app:fontFamily="@font/merriweather_bold"
+            app:layout_constraintEnd_toEndOf="@+id/verticalEndGuideline"
+            app:layout_constraintStart_toStartOf="@+id/verticalEndGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/trailTextView" />
 
-                <TextView
-                    android:id="@+id/published_on_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    tools:text="31-12-1999"/>
+        <TextView
+            android:id="@+id/sectionView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="13sp"
+            app:fontFamily="@font/merriweather_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sectionLabelView"
+            app:layout_constraintTop_toBottomOf="@+id/sectionLabelView"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Really long section description" />
 
-            </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/section_label_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/Merriweather.Bold"
-                    android:textSize="13sp"
-                    android:text="@string/section_label" />
-
-                <TextView
-                    android:id="@+id/section_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    tools:text="Really long section description so that we can test long line wrapping." />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

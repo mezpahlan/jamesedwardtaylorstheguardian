@@ -31,6 +31,20 @@
     @retrofit2.http.* <methods>;
 }
 
+# Moshi
+-dontwarn javax.annotation.**
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.* <methods>;
+}
+-keep @com.squareup.moshi.JsonQualifier interface *
+
+# Moshi Kotlin Codegen
+-keep class **JsonAdapter {
+    <init>(...);
+    <fields>;
+}
+-keepnames @com.squareup.moshi.JsonClass class *
+
 # Android Support Design
 -dontwarn android.support.design.**
 -keep class android.support.design.** { *; }

@@ -1,15 +1,52 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    // Define versions in a single place
+    ext {
+        // Sdk and tools
+        compileSdkVersion = 28
+        minSdkVersion = 21
+        targetSdkVersion = 28
+        gradleVersion = '3.2.1'
+
+        // Android X
+        androidXVersion = '1.0.0'
+        constraintLayoutVersion = '2.0.0-alpha2'
+        lifecycleVersion = '2.0.0'
+        navigationVersion = '1.0.0-alpha06'
+
+        // Architecture
+        kotlinVersion = '1.2.71'
+        ktxVersion = '0.3'
+        koinVersion = '1.0.1'
+        rxJavaVersion = '2.2.1'
+        rxAndroidVersion = '2.1.0'
+
+        // Network
+        retrofitVersion = '2.4.0'
+        moshiVersion = '1.6.0'
+
+        // UI
+        picassoVersion = '2.5.2'
+
+        // Test
+        junitVersion = '4.12'
+        mockitoVersion = '2.15.0'
+
+        // Instrumentation Test
+        runnerVersion = '1.1.0-alpha4'
+        espressoVersion = '3.1.0-alpha4'
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+
     repositories {
         google()
         jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

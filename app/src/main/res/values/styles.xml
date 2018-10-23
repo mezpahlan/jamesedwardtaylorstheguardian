@@ -1,14 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Main theme colors -->
         <!--   your app branding color for the app bar -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/primaryColor</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/primaryTextColor</item>
     </style>
 
     <style name="AppTheme.BrandedLaunch" parent="AppTheme">
@@ -16,7 +16,8 @@
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:fontFamily">@font/merriweather_regular</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="selectableItemBackground">?android:selectableItemBackground</item>
         <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
     </style>
@@ -24,14 +25,6 @@
     <!-- This configures the styles for the title within the Toolbar  -->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="Merriweather.Regular" parent="Base.TextAppearance.AppCompat">
-        <item name="fontPath">fonts/Merriweather-Regular.ttf</item>
-    </style>
-
-    <style name="Merriweather.Bold" parent="android:TextAppearance">
-        <item name="fontPath">fonts/Merriweather-Bold.ttf</item>
     </style>
 
 </resources>
