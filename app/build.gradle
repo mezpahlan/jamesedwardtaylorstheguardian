@@ -4,9 +4,24 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def isCI = System.getenv("CI") == "true"
+def keyStore = [:]
+
+if (isCI) {
+    keyStore['keyAlias'] = System.getenv("keystore_alias")
+    keyStore['keyPassword'] = System.getenv("keystore_alias_password")
+    keyStore['storeFile'] = file("../upload.keystore.jks")
+    keyStore['storePassword'] = System.getenv("keystore_password")
+} else {
+    def keystorePropertiesFile = file("../keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+    keyStore['keyAlias'] = keystoreProperties['keyAlias']
+    keyStore['keyPassword'] = keystoreProperties['keyPassword']
+    keyStore['storeFile'] = file(keystoreProperties['storeFile'])
+    keyStore['storePassword'] = keystoreProperties['storePassword']
+}
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -19,24 +34,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
-
-    def isRunningOnTravis = System.getenv("CI") == "true"
-
     signingConfigs {
-        if (isRunningOnTravis) {
-            release {
-                keyAlias System.getenv("keystore_alias")
-                keyPassword System.getenv("keystore_alias_password")
-                storeFile file("../upload.keystore.jks")
-                storePassword System.getenv("keystore_password")
-            }
-        } else {
-            release {
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-            }
+        release {
+            keyAlias keyStore['keyAlias']
+            keyPassword keyStore['keyPassword']
+            storeFile keyStore['storeFile']
+            storePassword keyStore['storePassword']
         }
     }
     buildTypes {
